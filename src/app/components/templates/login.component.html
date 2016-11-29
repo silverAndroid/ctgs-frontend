@@ -1,0 +1,13 @@
+<md-card align="center">
+  <md-card-title>Login</md-card-title>
+  <md-card-content>
+    <form *ngIf="active" id="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+      <md-input placeholder="Username" [(ngModel)]="user.username" name="username"></md-input>
+      <md-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"></md-input>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button type="submit" (click)="login()">Login</button>
+    <a md-button routerLink="/register" type="button">Register</a>
+  </md-card-actions>
+</md-card>
