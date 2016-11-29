@@ -3,20 +3,32 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+import { CookieService } from "angular2-cookie/services/cookies.service";
+import { LoggedInGuard } from "./logged-in.guard";
+import { UserService } from "./services/fake-user.service";
+
+import { routing } from "./app.routing";
+
 import { AppComponent } from './components/app.component';
 import { MaterialModule } from '@angular/material';
+import { LoginComponent } from './components/login.component';
+import { HomeComponent } from './components/home.component';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    MaterialModule.forRoot()
+    MaterialModule.forRoot(),
+    routing
   ],
-  providers: [],
+  providers: [CookieService, LoggedInGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
