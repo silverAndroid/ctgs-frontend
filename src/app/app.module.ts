@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import { LoggedInGuard } from "./logged-in.guard";
-import { UserService } from "./services/fake-user.service";
+import { UserService } from "./services/user.service";
 
 import { routing } from "./app.routing";
 
@@ -13,13 +13,16 @@ import { AppComponent } from './components/app.component';
 import { MaterialModule } from '@angular/material';
 import { LoginComponent } from './components/login.component';
 import { HomeComponent } from './components/home.component';
-
+import { RegisterComponent } from './components/register.component';
+import { StudentApplicationComponent } from './components/student-application.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    RegisterComponent,
+    StudentApplicationComponent
   ],
   imports: [
     BrowserModule,

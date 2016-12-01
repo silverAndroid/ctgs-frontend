@@ -1,0 +1,29 @@
+span {
+  text-align: center;
+}
+
+.item {
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  padding: 20px;
+}
+
+.cost {
+  display: block;
+}
+
+.wrapper {
+  box-sizing: content-box;
+}
+
+md-card {
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+@media (min-width: 768px) {
+  md-card {
+    margin: 20px;
+  }
+}
