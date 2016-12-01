@@ -1,3 +1,7 @@
+<div *ngFor="let application of applications">
+  <student-application [data]="application" class="col-md-3 col-sm-4"></student-application>
+</div>
+
 <button md-fab id="fab">
   <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-plus"></md-icon>
 </button>
