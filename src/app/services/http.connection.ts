@@ -7,7 +7,7 @@ import {CookieService} from 'angular2-cookie/core'
 
 export class HTTPConnection {
 
-  private static tokenKey = 'token';
+  private static loggedInKey = 'loggedIn';
 
   public static addAuthorizationHeader(token: string, requestOptionsArgs?: RequestOptionsArgs) : RequestOptionsArgs {
     if (requestOptionsArgs) {
@@ -34,15 +34,15 @@ export class HTTPConnection {
   }
 
   public static getToken(cookieService: CookieService) : string {
-    return this.getCookie(this.tokenKey, cookieService);
+    return this.getCookie(this.loggedInKey, cookieService);
   }
 
-  public static saveToken(token: string, cookieService: CookieService) {
-    this.saveCookie(this.tokenKey, token, cookieService);
+  public static saveToken(isLoggedIn: string, cookieService: CookieService) {
+    this.saveCookie(this.loggedInKey, isLoggedIn, cookieService);
   }
 
   public static deleteToken(cookieService: CookieService) {
-    this.deleteCookie(this.tokenKey, cookieService);
+    this.deleteCookie(this.loggedInKey, cookieService);
   }
 
   private static getCookie(key: string, cookieService: CookieService) : string {

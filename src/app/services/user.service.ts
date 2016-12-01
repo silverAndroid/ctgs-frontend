@@ -11,10 +11,10 @@ import {User} from "../models/user.model";
 @Injectable()
 export class UserService {
 
-  private loggedIn = false;
+  private loggedIn : boolean = true;
 
   constructor(private _http: Http, private _cookieService: CookieService) {
-    this.loggedIn = !!HTTPConnection.getToken(_cookieService);
+    this.loggedIn = !HTTPConnection.getToken(_cookieService) || Boolean(HTTPConnection.getToken(_cookieService));
   }
 
   login(user: User) : Observable<LoginModel> {
@@ -22,9 +22,9 @@ export class UserService {
       .map(HTTPConnection.extractData)
       .map((res) => {
         if (res['status'] == 200) {
-          HTTPConnection.saveToken(res['token'], this._cookieService);
-          this.loggedIn = true;
+          HTTPConnection.saveToken('true', this._cookieService);
         }
+        this.loggedIn = true;
         return res;
       })
       .catch(HTTPConnection.handleError);
