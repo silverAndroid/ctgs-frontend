@@ -1,6 +1,6 @@
 <md-card>
   <md-card-title>
-    Student 12345
+    Student {{studentApplication.owner}}
   </md-card-title>
   <md-card-content>
     <div class="wrapper">
@@ -24,7 +24,8 @@
     </div>
   </md-card-content>
   <md-card-actions>
-    <button md-button id="action-accept">ACCEPT</button>
-    <button md-button id="action-reject">REJECT</button>
+    <button md-button id="action-accept" *ngIf="studentApplication.role == 'supervisor'">ACCEPT</button>
+    <button md-button id="action-reject" *ngIf="studentApplication.role == 'supervisor'">REJECT</button>
+    <button md-button id="action-cancel" *ngIf="studentApplication.role == 'student'">CANCEL</button>
   </md-card-actions>
 </md-card>
