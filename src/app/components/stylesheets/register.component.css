@@ -1,9 +1,20 @@
 md-card {
   max-width: 20%;
-  margin: 15% 0 0 40%;
-  padding: 10px 50px 50px;
+  position: absolute;
+  top: 15%;
+  left: 40%;
+  padding: 30px 0 50px;
+  border-radius: 4px;
 }
 
 button {
   margin: 4px 0;
+}
+
+#register-form md-radio-button {
+  display: block;
+}
+
+#register-form span {
+  display: block;
 }

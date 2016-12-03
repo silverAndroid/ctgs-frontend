@@ -9,8 +9,9 @@ import { User } from "../models/user.model";
   styleUrls: ['stylesheets/register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User = new User("", "");
+  user: User = new User('', '', 'supervisor');
   active = true;
+  roles = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}];
 
   constructor(private _userService: UserService, private _router: Router) { }
 
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.active = false;
     this._userService.register(this.user).subscribe((res) => {
-      if (res.status == 200) {
+      if (!res.err) {
         this._router.navigate(['/login']);
       }
     });

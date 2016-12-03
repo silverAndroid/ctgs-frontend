@@ -12,7 +12,7 @@ import {ResponseModel} from "../models/response.model";
 @Injectable()
 export class UserService {
 
-  private loggedIn : boolean = true;
+  public loggedIn : boolean = true; // required to be public for AppComponent to check value constantly
 
   constructor(private _http: Http, private _cookieService: CookieService) {
     this.loggedIn = !(!HTTPConnection.getRole(_cookieService));
@@ -32,7 +32,7 @@ export class UserService {
   }
 
   register(user: User) : Observable<ResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/register`, {name: user.name, username: user.username, password: user.password})
+    return this._http.post(`${HTTPConnection.BASE_URL}/users`, {name: user.name, username: user.username, password: user.password, role: user.role})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
