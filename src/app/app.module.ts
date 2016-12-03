@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login.component';
 import { HomeComponent } from './components/home.component';
 import { RegisterComponent } from './components/register.component';
 import { StudentApplicationComponent } from './components/student-application.component';
+import {ApplicationService} from "./services/application.service";
+import { NewStudentApplicationComponent } from './components/new-student-application.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,7 @@ import { StudentApplicationComponent } from './components/student-application.co
     MaterialModule.forRoot(),
     routing
   ],
-  providers: [CookieService, LoggedInGuard, UserService],
+  providers: [ApplicationService, CookieService, LoggedInGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

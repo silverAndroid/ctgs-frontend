@@ -1,5 +1,8 @@
 import {Component, OnInit} from "@angular/core";
 import {StudentApplication} from "../models/student-application.model";
+import {CookieService} from "angular2-cookie/services/cookies.service";
+import {ApplicationService} from "../services/application.service";
+import {HTTPConnection} from "../services/http.connection";
 
 @Component({
   selector: 'app-home',
@@ -8,11 +11,27 @@ import {StudentApplication} from "../models/student-application.model";
 })
 export class HomeComponent implements OnInit {
 
-  applications: StudentApplication[] = [new StudentApplication(3000.1, 100, 300, 80), new StudentApplication(200, 0.5, 500, 1000), new StudentApplication(4165347384783.4865, 4523, 453, 846), new StudentApplication(4865, 53, 865, 4865.54)];
+  applications: StudentApplication[] = [];
 
-  constructor() {
+  constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
   }
 
   ngOnInit() {
+    this._applicationService.getApplications().subscribe((res) => {
+      if (!res.err) {
+        let applications: StudentApplication[] = [];
+        res.data.forEach((object) => {
+          applications.push(new StudentApplication(
+            object.registration,
+            object.transportation,
+            object.accommodation,
+            object.meals,
+            object.owner,
+            HTTPConnection.getRole(this._cookieService)
+          ))
+        });
+        this.applications = applications;
+      }
+    });
   }
 }
