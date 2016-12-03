@@ -22,6 +22,14 @@ md-card {
   margin: 0 20px;
 }
 
+button#action-accept {
+  color: #4CAF50;
+}
+
+button#action-reject {
+  color: #F44336;
+}
+
 @media (min-width: 768px) {
   md-card {
     margin: 20px;
