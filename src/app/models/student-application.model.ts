@@ -2,42 +2,34 @@
  * Created by silver_android on 30/11/16.
  */
 export class StudentApplication {
-  constructor(private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number) {
-    this.registrationCost = Number(this.registrationCost.toFixed(2));
-    this.transportationCost = Number(this.transportationCost.toFixed(2));
-    this.accommodationCost = Number(this.accommodationCost.toFixed(2));
-    this.mealCost = Number(this.mealCost.toFixed(2));
+  constructor(private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number,  private _owner: string, private _role: string) {
+    this._registrationCost = Number(this._registrationCost.toFixed(2));
+    this._transportationCost = Number(this._transportationCost.toFixed(2));
+    this._accommodationCost = Number(this._accommodationCost.toFixed(2));
+    this._mealCost = Number(this._mealCost.toFixed(2));
   }
 
   get registrationCost(): number {
     return this._registrationCost;
   }
 
-  set registrationCost(value: number) {
-    this._registrationCost = value;
-  }
-
   get transportationCost(): number {
     return this._transportationCost;
-  }
-
-  set transportationCost(value: number) {
-    this._transportationCost = value;
   }
 
   get accommodationCost(): number {
     return this._accommodationCost;
   }
 
-  set accommodationCost(value: number) {
-    this._accommodationCost = value;
-  }
-
   get mealCost(): number {
     return this._mealCost;
   }
 
-  set mealCost(value: number) {
-    this._mealCost = value;
+  get role(): string {
+    return this._role;
+  }
+
+  get owner(): string {
+    return this._owner;
   }
 }
