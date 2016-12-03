@@ -10,8 +10,9 @@ import {UserService} from "../services/user.service";
 })
 export class LoginComponent implements OnInit {
 
-  user = new User('', '');
+  user = new User('', '', 'supervisor');
   active = true;
+  roles = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}];
 
   constructor(private _userService: UserService, private _router: Router) {
   }
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.active = false;
     this._userService.login(this.user).subscribe((res) => {
-      if (res.status == 200) {
+      if (!res.err) {
         this._router.navigate(['']);
       }
     });

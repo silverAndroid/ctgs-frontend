@@ -1,10 +1,20 @@
 md-card {
   max-width: 20%;
-  margin: 15% 0 0 40%;
+  position: absolute;
+  top: 15%;
+  left: 40%;
   padding: 30px 0 50px;
   border-radius: 4px;
 }
 
 button {
   margin: 4px 0;
+}
+
+#login-form md-radio-button {
+  display: block;
+}
+
+#login-form span {
+  display: block;
 }
