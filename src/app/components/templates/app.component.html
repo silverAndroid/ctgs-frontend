@@ -2,5 +2,13 @@
   <span>
     {{title}}
   </span>
+  <span class="fill-remaining-space"></span>
+  <button md-icon-button [md-menu-trigger-for]="menu" *ngIf="userService.loggedIn" id="menu">
+    <md-icon>more_vert</md-icon>
+  </button>
+
+  <md-menu #menu="mdMenu" x-position="before">
+    <button md-menu-item (click)="logout()"> Sign Out </button>
+  </md-menu>
 </md-toolbar>
 <router-outlet></router-outlet>
