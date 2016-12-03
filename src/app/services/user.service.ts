@@ -7,7 +7,7 @@ import {CookieService} from "angular2-cookie/core";
 import {HTTPConnection} from "./http.connection";
 import {Observable} from "rxjs";
 import {User} from "../models/user.model";
-import {ResponseModel} from "../models/response.model";
+import {TextResponseModel} from "../models/text-response.model";
 
 @Injectable()
 export class UserService {
@@ -18,7 +18,7 @@ export class UserService {
     this.loggedIn = !(!HTTPConnection.getRole(_cookieService));
   }
 
-  login(user: User) : Observable<ResponseModel> {
+  login(user: User) : Observable<TextResponseModel> {
     return this._http.post(`${HTTPConnection.BASE_URL}/login`, {username: user.username, password: user.password, role: user.role}, HTTPConnection.changeContentType)
       .map(HTTPConnection.extractData)
       .map((res) => {
@@ -31,7 +31,7 @@ export class UserService {
       .catch(HTTPConnection.handleError);
   }
 
-  register(user: User) : Observable<ResponseModel> {
+  register(user: User) : Observable<TextResponseModel> {
     return this._http.post(`${HTTPConnection.BASE_URL}/users`, {name: user.name, username: user.username, password: user.password, role: user.role})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);

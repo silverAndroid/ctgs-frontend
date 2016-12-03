@@ -1,7 +1,7 @@
 /**
  * Created by silver_android on 01/12/16.
  */
-export class ResponseModel {
+export class TextResponseModel {
   constructor(private _err: boolean, private _message: string) {
   }
 
