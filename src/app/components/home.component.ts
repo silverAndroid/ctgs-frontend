@@ -12,6 +12,7 @@ import {HTTPConnection} from "../services/http.connection";
 export class HomeComponent implements OnInit {
 
   applications: StudentApplication[] = [];
+  role: string = HTTPConnection.getRole(this._cookieService);
 
   constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
   }
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
             object.accommodation,
             object.meals,
             object.owner,
-            HTTPConnection.getRole(this._cookieService)
+            this.role
           ))
         });
         this.applications = applications;
