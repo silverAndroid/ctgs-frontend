@@ -24,7 +24,8 @@ import { NewStudentApplicationComponent } from './components/new-student-applica
     LoginComponent,
     HomeComponent,
     RegisterComponent,
-    StudentApplicationComponent
+    StudentApplicationComponent,
+    NewStudentApplicationComponent
   ],
   imports: [
     BrowserModule,

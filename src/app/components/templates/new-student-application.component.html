@@ -1,0 +1,23 @@
+<md-card align="center">
+  <md-card-title>New Application</md-card-title>
+  <md-card-content>
+    <form *ngIf="active" id="new-application-form" (ngSubmit)="createApplication()" #newApplicationForm="ngForm">
+      <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
+        <span md-prefix>$&nbsp;</span>
+      </md-input>
+      <md-input placeholder="Transportation Cost" [(ngModel)]="application.transportationCost" name="transportation">
+        <span md-prefix>$&nbsp;</span>
+      </md-input>
+      <md-input placeholder="Accommodation Cost" [(ngModel)]="application.accommodationCost" name="accommodation">
+        <span md-prefix>$&nbsp;</span>
+      </md-input>
+      <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
+        <span md-prefix>$&nbsp;</span>
+      </md-input>
+    </form>
+  </md-card-content>
+  <md-card-actions>
+    <button md-button type="submit" (click)="createApplication()">Submit</button>
+    <button md-button routerLink="/" type="button">Cancel</button>
+  </md-card-actions>
+</md-card>
