@@ -1,7 +1,7 @@
 import {RequestOptionsArgs, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {CookieService} from "angular2-cookie/core";
-import {ResponseModel} from "../models/response.model";
+import {TextResponseModel} from "../models/text-response.model";
 import {log} from "util";
 /**
  * Created by silve on 2016-08-07.
@@ -50,7 +50,7 @@ export class HTTPConnection {
 
   // Copied from the Angular 2 Developer Guide - HTTP Client
   public static extractData(res: Response) {
-    return res.headers.get('content-type') == 'application/json' ? res.json() : new ResponseModel(res.status == 500 || res.status == 403 || res.status == 401 || res.status == 400, res.text()) || {};
+    return res.headers.get('content-type').indexOf('application/json') >= 0 ? res.json() : new TextResponseModel(res.status == 500 || res.status == 403 || res.status == 401 || res.status == 400, res.text()) || {};
   }
 
   public static handleError(error: any) {
