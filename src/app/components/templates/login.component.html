@@ -2,8 +2,8 @@
   <md-card-title>Login</md-card-title>
   <md-card-content>
     <form *ngIf="active" id="login-form" (ngSubmit)="login()" #loginForm="ngForm">
-      <md-input placeholder="Username" [(ngModel)]="user.username" name="username"></md-input>
-      <md-input type="password" placeholder="Password" [(ngModel)]="user.password" name="password"></md-input>
+      <md-input autocomplete="off" placeholder="Username" [(ngModel)]="user.username" name="username"></md-input>
+      <md-input autocomplete="off" type="password" placeholder="Password" [(ngModel)]="user.password" name="password"></md-input>
       <span>Roles:</span>
       <md-radio-group [(ngModel)]="user.role" name="role">
         <md-radio-button *ngFor="let role of roles" [value]="role.value" style="padding: 0 16px">

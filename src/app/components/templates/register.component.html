@@ -2,8 +2,9 @@
   <md-card-title>Register</md-card-title>
   <md-card-content>
     <form *ngIf="active" id="register-form" (ngSubmit)="register()" #registerForm="ngForm">
-      <md-input placeholder="Name" [(ngModel)]="user.givenNames" name="person-name"></md-input>
+      <md-input placeholder="Name" [(ngModel)]="user.name" name="person-name"></md-input>
       <md-input placeholder="Username" [(ngModel)]="user.username" name="username"></md-input>
+      <md-input type="email" placeholder="Email" [(ngModel)]="user.email" name="email"></md-input>
       <md-input type="password" placeholder="Password" [(ngModel)]="user.password" name="pass"></md-input>
       <span>Roles:</span>
       <md-radio-group [(ngModel)]="user.role" name="role">
