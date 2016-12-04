@@ -3,7 +3,7 @@
  */
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {HTTPConnection} from "./http.connection";
 import {JSONResponseModel} from "../models/json-response.model";
 import {StudentApplication} from "../models/student-application.model";
@@ -11,6 +11,10 @@ import {TextResponseModel} from "../models/text-response.model";
 
 @Injectable()
 export class ApplicationService {
+
+  private recommendationSource = new Subject<RecommendationModel>();
+  recommendation$ = this.recommendationSource.asObservable();
+
   constructor(private _http: Http) {
   }
 
@@ -31,4 +35,12 @@ export class ApplicationService {
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
   }
+
+  emitRecommendation(recommendation: RecommendationModel) {
+    this.recommendationSource.next(recommendation);
+  }
+}
+
+export class RecommendationModel {
+  constructor(public applicationID: number, public wasAccepted: boolean) {}
 }

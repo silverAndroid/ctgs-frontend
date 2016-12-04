@@ -16,6 +16,19 @@ export class HomeComponent implements OnInit {
   role: string = HTTPConnection.getRole(this._cookieService);
 
   constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
+    _applicationService.recommendation$.subscribe((recommendation) => {
+      let newApplication: StudentApplication = null;
+      this.applications.map((application) => {
+        if (application.id == recommendation.applicationID) {
+          newApplication = application;
+          application.recommendation = recommendation.wasAccepted ? 'Accepted' : 'Rejected';
+        }
+        return application;
+      });
+      let index = this.pendingApplications.indexOf(newApplication);
+      if (index > -1)
+        this.pendingApplications.splice(index, 1);
+    });
   }
 
   ngOnInit() {
