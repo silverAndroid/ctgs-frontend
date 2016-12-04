@@ -9,7 +9,7 @@ import { User } from "../models/user.model";
   styleUrls: ['stylesheets/register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  user: User = new User('', '', 'supervisor');
+  user: User = new User('', '', 'supervisor', '', '');
   active = true;
   roles = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}];
 
