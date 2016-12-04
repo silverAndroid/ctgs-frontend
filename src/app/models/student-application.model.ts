@@ -54,6 +54,10 @@ export class StudentApplication {
     return this._recommendation;
   }
 
+  set recommendation(value: string) {
+    this._recommendation = value;
+  }
+
   get role(): string {
     return this._role;
   }
