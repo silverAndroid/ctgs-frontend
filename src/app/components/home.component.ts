@@ -12,6 +12,7 @@ import {HTTPConnection} from "../services/http.connection";
 export class HomeComponent implements OnInit {
 
   applications: StudentApplication[] = [];
+  pendingApplications: StudentApplication[] = [];
   role: string = HTTPConnection.getRole(this._cookieService);
 
   constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
@@ -22,14 +23,19 @@ export class HomeComponent implements OnInit {
       if (!res.err) {
         let applications: StudentApplication[] = [];
         res.data.forEach((object) => {
-          applications.push(new StudentApplication(
+          let application: StudentApplication = new StudentApplication(
+            object.id,
             object.registration,
             object.transportation,
             object.accommodation,
             object.meals,
             object.owner,
+            object.recommendation,
             this.role
-          ))
+          );
+          applications.push(application);
+          if (application.recommendation == 'Pending')
+            this.pendingApplications.push(application);
         });
         this.applications = applications;
       }

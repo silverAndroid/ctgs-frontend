@@ -3,3 +3,11 @@
   right: 16px;
   position: fixed;
 }
+
+h1 {
+  margin-left: 16px;
+}
+
+#all #pending {
+  display: block;
+}

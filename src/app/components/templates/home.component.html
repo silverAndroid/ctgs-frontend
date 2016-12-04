@@ -1,5 +1,15 @@
-<div *ngFor="let application of applications">
-  <student-application [data]="application" class="col-md-3 col-sm-4"></student-application>
+<div class="row" id="pending">
+  <h1>Pending Applications</h1>
+  <div *ngFor="let application of pendingApplications">
+    <student-application [data]="application" class="col-md-3 col-sm-4"></student-application>
+  </div>
+</div>
+
+<div class="row" id="all">
+  <h1>All Applications</h1>
+  <div *ngFor="let application of applications">
+    <student-application [data]="application" class="col-md-3 col-sm-4"></student-application>
+  </div>
 </div>
 
 <button md-fab *ngIf="role == 'student'" id="fab" routerLink="/applications/new">
