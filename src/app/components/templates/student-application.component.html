@@ -1,31 +1,36 @@
 <md-card>
-  <md-card-title>
-    Student {{studentApplication.owner}}
-  </md-card-title>
-  <md-card-content>
-    <div class="wrapper">
-      <div class="item">
-        <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-currency-usd"></md-icon>
-        <span class="cost">${{studentApplication.registrationCost}}</span>
-      </div>
-      <div class="item">
-        <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-bus"></md-icon>
-        <span class="cost">${{studentApplication.transportationCost}}</span>
-      </div>
-      <br>
-      <div class="item">
-        <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-hotel"></md-icon>
-        <span class="cost">${{studentApplication.accommodationCost}}</span>
-      </div>
-      <div class="item">
-        <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-food"></md-icon>
-        <span class="cost">${{studentApplication.mealCost}}</span>
-      </div>
-    </div>
-  </md-card-content>
-  <md-card-actions>
-    <button md-button id="action-accept" *ngIf="studentApplication.role == 'supervisor'">ACCEPT</button>
-    <button md-button id="action-reject" *ngIf="studentApplication.role == 'supervisor'">REJECT</button>
-    <button md-button id="action-cancel" *ngIf="studentApplication.role == 'student'">CANCEL</button>
-  </md-card-actions>
+    <md-card-title>
+        Student {{application.owner}}
+    </md-card-title>
+    <md-card-subtitle>
+        <span>Status:</span><span [ngStyle]="{color: recommendationColor}">&nbsp;{{application.recommendation}}</span>
+    </md-card-subtitle>
+    <md-card-content>
+        <div class="wrapper">
+            <div class="item">
+                <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-currency-usd"></md-icon>
+                <span class="cost">${{application.registrationCost}}</span>
+            </div>
+            <div class="item">
+                <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-bus"></md-icon>
+                <span class="cost">${{application.transportationCost}}</span>
+            </div>
+            <br>
+            <div class="item">
+                <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-hotel"></md-icon>
+                <span class="cost">${{application.accommodationCost}}</span>
+            </div>
+            <div class="item">
+                <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-food"></md-icon>
+                <span class="cost">${{application.mealCost}}</span>
+            </div>
+        </div>
+    </md-card-content>
+    <md-card-actions>
+        <button md-button id="action-accept" *ngIf="application.role == 'supervisor' && application.recommendation == 'Pending'" (click)="acceptApplication()">
+            ACCEPT
+        </button>
+        <button md-button id="action-reject" *ngIf="application.role == 'supervisor' && application.recommendation == 'Pending'">REJECT</button>
+        <button md-button id="action-cancel" *ngIf="application.role == 'student' && application.recommendation == 'Pending'">CANCEL</button>
+    </md-card-actions>
 </md-card>
