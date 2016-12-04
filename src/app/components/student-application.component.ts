@@ -11,7 +11,7 @@ export class StudentApplicationComponent implements OnInit {
 
   @Input("data")
   application : StudentApplication;
-  recommendationColour: string = 'initial';
+  recommendationColour: string = 'inherit';
   constructor(private _applicationService: ApplicationService) { }
 
   ngOnInit() {
