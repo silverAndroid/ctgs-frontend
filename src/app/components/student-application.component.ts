@@ -18,7 +18,7 @@ export class StudentApplicationComponent implements OnInit {
     let recommendation = this.application.recommendation;
     if (recommendation == 'Accepted')
       this.recommendationColour = 'green';
-    else if (recommendation == 'Denied')
+    else if (recommendation == 'Rejected')
       this.recommendationColour = 'red';
     else if (recommendation.indexOf('Suggesting Changes') >= 0)
       this.recommendationColour = 'yellow';
