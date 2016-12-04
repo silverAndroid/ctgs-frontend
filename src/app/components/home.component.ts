@@ -3,6 +3,7 @@ import {StudentApplication} from "../models/student-application.model";
 import {CookieService} from "angular2-cookie/services/cookies.service";
 import {ApplicationService} from "../services/application.service";
 import {HTTPConnection} from "../services/http.connection";
+import {Constants} from "../constants";
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,7 @@ export class HomeComponent implements OnInit {
       this.applications.map((application) => {
         if (application.id == recommendation.applicationID) {
           newApplication = application;
-          application.recommendation = recommendation.wasAccepted ? 'Accepted' : 'Rejected';
+          application.recommendation = recommendation.wasAccepted ? Constants.CONST_ACCEPTED : Constants.CONST_REJECTED;
         }
         return application;
       });
@@ -47,7 +48,7 @@ export class HomeComponent implements OnInit {
             this.role
           );
           applications.push(application);
-          if (application.recommendation == 'Pending')
+          if (application.recommendation == Constants.CONST_PENDING)
             this.pendingApplications.push(application);
         });
         this.applications = applications;

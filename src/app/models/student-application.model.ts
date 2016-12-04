@@ -1,3 +1,4 @@
+import {Constants} from "../constants";
 /**
  * Created by silver_android on 30/11/16.
  */
@@ -64,7 +65,7 @@ export class StudentApplication {
 
   private static parseRecommendation(recommendation: string) : string {
     if (!recommendation)
-      return 'Pending';
+      return Constants.CONST_PENDING;
     return recommendation;
   }
 }
