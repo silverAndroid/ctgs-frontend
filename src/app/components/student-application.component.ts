@@ -28,7 +28,7 @@ export class StudentApplicationComponent implements OnInit {
   acceptApplication() {
       this._applicationService.makeRecommendation('Accepted', this.application.id).subscribe((res) => {
         if (!res.err) {
-          this._alertService.showMsg('Accepted application!', false, '');
+          this._alertService.showMsg('Accepted application', false);
         }
       });
   }
@@ -36,7 +36,7 @@ export class StudentApplicationComponent implements OnInit {
   rejectApplication() {
     this._applicationService.makeRecommendation('Rejected', this.application.id).subscribe((res) => {
       if (!res.err) {
-        console.log('success');
+        this._alertService.showMsg('Rejected application', false);
       }
     });
   }

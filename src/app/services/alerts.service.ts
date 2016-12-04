@@ -10,7 +10,7 @@ export class AlertsService {
 
   constructor(private snackBar: MdSnackBar) {}
 
-  showMsg(msg: string, haveAction: boolean, actionLabel: string, duration?: number) {
+  showMsg(msg: string, haveAction: boolean, actionLabel?: string, duration?: number) {
     const config: any = new MdSnackBarConfig(); // <-- https://github.com/angular/material2/issues/2020
     this.snackBarRef = this.snackBar.open(msg, haveAction && actionLabel, config);
 
