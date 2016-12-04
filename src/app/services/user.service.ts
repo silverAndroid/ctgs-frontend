@@ -32,7 +32,7 @@ export class UserService {
   }
 
   register(user: User) : Observable<TextResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/users`, {name: user.name, username: user.username, password: user.password, role: user.role})
+    return this._http.post(`${HTTPConnection.BASE_URL}/users`, {name: user.name, username: user.username, password: user.password, email: user.email, role: user.role})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
