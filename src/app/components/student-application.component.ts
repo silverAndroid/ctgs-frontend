@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
 import {StudentApplication} from "../models/student-application.model";
 import {ApplicationService} from "../services/application.service";
+import {AlertsService} from "../services/alerts.service";
 
 @Component({
   selector: 'student-application',
@@ -12,7 +13,7 @@ export class StudentApplicationComponent implements OnInit {
   @Input("data")
   application : StudentApplication;
   recommendationColour: string = 'inherit';
-  constructor(private _applicationService: ApplicationService) { }
+  constructor(private _applicationService: ApplicationService, private _alertService: AlertsService) { }
 
   ngOnInit() {
     let recommendation = this.application.recommendation;
@@ -27,7 +28,7 @@ export class StudentApplicationComponent implements OnInit {
   acceptApplication() {
       this._applicationService.makeRecommendation('Accepted', this.application.id).subscribe((res) => {
         if (!res.err) {
-          console.log('success');
+          this._alertService.showMsg('Accepted application!', false, '');
         }
       });
   }
