@@ -13,10 +13,6 @@ span {
   display: block;
 }
 
-.wrapper {
-  box-sizing: content-box;
-}
-
 md-card {
   border-radius: 8px;
   margin: 0 20px;
