@@ -10,9 +10,8 @@ import {Router} from "@angular/router";
 })
 export class NewStudentApplicationComponent implements OnInit {
 
-  application = new StudentApplication(0, 0, 0, 0, '', '');
+  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '');
   active = true;
-  fields = [{placeholder: 'Registration Cost', model: this.application.registrationCost, name: 'registration'}];
 
   constructor(private _applicationService: ApplicationService, private _router: Router) { }
 
