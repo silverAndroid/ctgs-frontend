@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   applications: StudentApplication[] = [];
   pendingApplications: StudentApplication[] = [];
+  cancelledApplications: StudentApplication[] = [];
   role: string = HTTPConnection.getRole(this._cookieService);
 
   constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
@@ -33,8 +34,11 @@ export class HomeComponent implements OnInit {
             object.recommendation,
             this.role
           );
-          applications.push(application);
+          if (!(application.recommendation == 'Cancelled' && this.role != 'student'))
+            applications.push(application);
           if (application.recommendation == 'Pending')
+            this.pendingApplications.push(application);
+          else if (application.recommendation == 'Cancelled')
             this.pendingApplications.push(application);
         });
         this.applications = applications;
