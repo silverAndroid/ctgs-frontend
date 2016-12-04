@@ -1,8 +1,7 @@
-import {RequestOptionsArgs, Headers, Response} from "@angular/http";
+import {Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {CookieService} from "angular2-cookie/core";
 import {TextResponseModel} from "../models/text-response.model";
-import {log} from "util";
 /**
  * Created by silve on 2016-08-07.
  */
@@ -12,17 +11,6 @@ export class HTTPConnection {
   private static roleKey = 'role';
 
   public static BASE_URL = 'http://localhost:8080';
-
-  public static changeContentType(requestOptionsArgs?: RequestOptionsArgs): RequestOptionsArgs {
-    if (requestOptionsArgs) {
-      requestOptionsArgs.headers.append('Content-Type', 'application/json');
-      return requestOptionsArgs;
-    }
-
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    return {headers: headers};
-  }
 
   public static getRole(cookieService: CookieService): string {
     return this.getCookie(this.roleKey, cookieService);

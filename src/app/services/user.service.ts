@@ -19,7 +19,7 @@ export class UserService {
   }
 
   login(user: User) : Observable<TextResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/login`, {username: user.username, password: user.password, role: user.role}, HTTPConnection.changeContentType)
+    return this._http.post(`${HTTPConnection.BASE_URL}/login`, {username: user.username, password: user.password, role: user.role})
       .map(HTTPConnection.extractData)
       .map((res) => {
         if (!res.err) {
