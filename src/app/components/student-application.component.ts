@@ -39,4 +39,12 @@ export class StudentApplicationComponent implements OnInit {
       }
     });
   }
+
+  cancelApplication() {
+    this._applicationService.makeRecommendation('Cancelled', this.application.id).subscribe((res) => {
+      if (!res.err) {
+        console.log('success');
+      }
+    });
+  }
 }
