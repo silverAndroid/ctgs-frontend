@@ -31,4 +31,12 @@ export class StudentApplicationComponent implements OnInit {
         }
       });
   }
+
+  rejectApplication() {
+    this._applicationService.makeRecommendation('Rejected', this.application.id).subscribe((res) => {
+      if (!res.err) {
+        console.log('success');
+      }
+    });
+  }
 }
