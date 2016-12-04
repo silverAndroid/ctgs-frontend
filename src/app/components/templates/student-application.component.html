@@ -31,6 +31,5 @@
             ACCEPT
         </button>
         <button md-button id="action-reject" *ngIf="application.role == 'supervisor' && application.recommendation == 'Pending'" (click)="rejectApplication()">REJECT</button>
-        <button md-button id="action-cancel" *ngIf="application.role == 'student' && application.recommendation == 'Pending'" (click)="cancelApplication()">CANCEL</button>
     </md-card-actions>
 </md-card>

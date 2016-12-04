@@ -12,13 +12,6 @@
   </div>
 </div>
 
-<div class="row" id="cancelled" *ngIf="role == 'student'">
-  <h1>Cancelled Applications</h1>
-  <div *ngFor="let application of cancelledApplications">
-    <student-application [data]="application" class="col-md-3 col-sm-4"></student-application>
-  </div>
-</div>
-
 <button md-fab *ngIf="role == 'student'" id="fab" routerLink="/applications/new">
   <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-plus"></md-icon>
 </button>
