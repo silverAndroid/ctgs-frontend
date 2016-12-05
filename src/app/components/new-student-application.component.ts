@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['stylesheets/new-student-application.component.css']
 })
 export class NewStudentApplicationComponent implements OnInit {
-
+  
   @ViewChild('dropdown')
   dropdown: any;
   application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
