@@ -19,14 +19,6 @@
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
                 name="presentationTitle"></md-input>
       <span>Presentation Type</span>
-      <select
-        name="presentationOptions"
-        id="presentationDropdown"
-        size="2"
-        form="new-application-form"
-        required>
-        <option *ngFor="let option of presentationOptions" [value]="option.value">{{option.label}}</option>
-      </select>
       <paper-dropdown-menu label="Select a type of presentation">
         <paper-listbox class="dropdown-content">
           <paper-item *ngFor="let option of presentationOptions">{{option.label}}</paper-item>
