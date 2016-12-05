@@ -28,6 +28,8 @@ import { NewStudentApplicationComponent } from './components/new-student-applica
     LoginComponent,
     NewStudentApplicationComponent,
     PolymerElement('paper-dropdown-menu'),
+    PolymerElement('paper-listbox'),
+    PolymerElement('paper-item'),
     RegisterComponent,
     StudentApplicationComponent
   ],

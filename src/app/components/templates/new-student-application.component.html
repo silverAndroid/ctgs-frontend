@@ -27,6 +27,11 @@
         required>
         <option *ngFor="let option of presentationOptions" [value]="option.value">{{option.label}}</option>
       </select>
+      <paper-dropdown-menu label="Select a type of presentation">
+        <paper-listbox class="dropdown-content">
+          <paper-item *ngFor="let option of presentationOptions">{{option.label}}</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
     </form>
   </md-card-content>
   <md-card-actions>
