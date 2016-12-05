@@ -19,7 +19,14 @@
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
                 name="presentationTitle"></md-input>
       <span>Presentation Type</span>
-      <ng2-select [placeholder]="'Select a type of presentation'" [options]="presentationOptions" [(ngModel)]="application.presentationOption" name="presentationOptions"></ng2-select>
+      <select
+        name="presentationOptions"
+        id="presentationDropdown"
+        size="2"
+        form="new-application-form"
+        required>
+        <option *ngFor="let option of presentationOptions" [value]="option.value">{{option.label}}</option>
+      </select>
     </form>
   </md-card-content>
   <md-card-actions>

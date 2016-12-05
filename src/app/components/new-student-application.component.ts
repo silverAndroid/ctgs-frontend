@@ -12,7 +12,7 @@ export class NewStudentApplicationComponent implements OnInit {
 
   application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
   active = true;
-  presentationOptions = ['Poster', 'Verbal'];
+  presentationOptions = [{value: 'poster', label: 'Poster'}, {value: 'verbal', label: 'Verbal'}];
 
   constructor(private _applicationService: ApplicationService, private _router: Router) { }
 
