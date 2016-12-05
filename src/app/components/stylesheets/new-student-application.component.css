@@ -13,7 +13,12 @@ md-card-content md-input {
   padding: 1px;
 }
 
-md-card-content ng2-select {
+md-card-content .ng2-dropdown-container {
   margin: 16px 64px;
   padding: 1px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ng2-dropdown-container > ng2-dropdown-button {
+  font-weight: normal;
 }
