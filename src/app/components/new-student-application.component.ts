@@ -9,14 +9,15 @@ import {Router} from "@angular/router";
   styleUrls: ['stylesheets/new-student-application.component.css']
 })
 export class NewStudentApplicationComponent implements OnInit {
-  
+
   @ViewChild('dropdown')
   dropdown: any;
   application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
   active = true;
   presentationOptions = [{value: 'poster', label: 'Poster'}, {value: 'verbal', label: 'Verbal'}];
 
-  constructor(private _applicationService: ApplicationService, private _router: Router) {}
+  constructor(private _applicationService: ApplicationService, private _router: Router) {
+  }
 
   ngOnInit() {
   }

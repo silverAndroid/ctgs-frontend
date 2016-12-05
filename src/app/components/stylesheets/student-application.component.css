@@ -21,6 +21,14 @@ button#action-reject {
   color: #F44336;
 }
 
+.ng-valid[required], .ng-valid.required  {
+  dividerColor: 'primary';
+}
+
+.ng-invalid:not(form)  {
+  dividerColor: 'warn';
+}
+
 @media (min-width: 768px) {
   md-card {
     margin: 20px;

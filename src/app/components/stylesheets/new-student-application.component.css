@@ -13,7 +13,10 @@ md-card-content md-input {
   padding: 1px;
 }
 
-md-card-content paper-dropdown-menu {
+#new-application-form md-radio-button {
   display: block;
-  padding: 0 64px;
+}
+
+#new-application-form span {
+  display: block;
 }

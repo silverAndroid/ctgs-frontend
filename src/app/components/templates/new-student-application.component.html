@@ -2,27 +2,28 @@
   <md-card-title>New Application</md-card-title>
   <md-card-content>
     <form *ngIf="active" id="new-application-form" (ngSubmit)="createApplication()" #newApplicationForm="ngForm">
-      <md-input placeholder="Registration Cost*" [(ngModel)]="application.registrationCost" name="registration" required>
+      <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Transportation Cost*" [(ngModel)]="application.transportationCost" name="transportation" required>
+      <md-input placeholder="Transportation Cost" [(ngModel)]="application.transportationCost" name="transportation">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Accommodation Cost*" [(ngModel)]="application.accommodationCost" name="accommodation" required>
+      <md-input placeholder="Accommodation Cost" [(ngModel)]="application.accommodationCost" name="accommodation">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Meal Cost*" [(ngModel)]="application.mealCost" name="meals" required>
+      <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
         <span md-prefix>$&nbsp;</span>
       </md-input>
       <md-input placeholder="Conference Description" [(ngModel)]="application.conferenceDescription"
                 name="conferenceDescript"></md-input>
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
                 name="presentationTitle"></md-input>
-      <paper-dropdown-menu #dropdown label="Presentation type">
-        <paper-listbox class="dropdown-content" (iron-select)="getPresentationType($event)">
-          <paper-item *ngFor="let option of presentationOptions">{{option.label}}</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
+      <span>Presentation Options:</span>
+      <md-radio-group [(ngModel)]="application.presentationOption" name="presentationOption">
+        <md-radio-button *ngFor="let option of presentationOptions" [value]="option.value" style="padding: 0 16px">
+          {{option.label}}
+        </md-radio-button>
+      </md-radio-group>
     </form>
   </md-card-content>
   <md-card-actions>
