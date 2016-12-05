@@ -1,0 +1,21 @@
+{
+  "name": "ctgs-frontend",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Rushil Perera <pererarushil1940@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/silverAndroid/ctgs-frontend",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "paper-dropdown-menu": "PolymerElements/paper-dropdown-menu#^1.4.2"
+  }
+}
