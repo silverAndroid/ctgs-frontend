@@ -13,7 +13,12 @@ export class AppComponent {
   title = 'Travel Grant Application System';
   currentRole = HTTPConnection.getRole(this._cookieService);
 
-  constructor(public userService: UserService, private _router: Router, private _cookieService: CookieService) {}
+  constructor(public userService: UserService, private _router: Router, private _cookieService: CookieService) {
+    this.userService.loggedIn$.subscribe((loggedIn) => {
+      if (loggedIn)
+        this.currentRole = HTTPConnection.getRole(this._cookieService);
+    });
+  }
 
   logout() {
     this.userService.logout();
