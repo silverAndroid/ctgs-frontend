@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {User} from "../models/user.model";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
+import {Constants} from "../constants";
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   user = new User('', '', 'supervisor');
   active = true;
-  roles = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}];
+  roles = Constants.CONST_ROLES;
 
   constructor(private _userService: UserService, private _router: Router) {}
 

@@ -5,4 +5,5 @@ export class Constants {
   static CONST_ACCEPTED = 'Accepted';
   static CONST_REJECTED = 'Rejected';
   static CONST_PENDING = 'Pending';
+  static CONST_ROLES = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}, {value: 'admin', label: 'Admin'}];
 }
