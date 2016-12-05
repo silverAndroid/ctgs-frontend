@@ -25,7 +25,7 @@
                 <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-food"></md-icon>
                 <span class="cost">${{application.mealCost}}</span>
             </div>
-          <span style="display: block;">{{application.presentationOption}} presentation on {{application.presentationTitle}}</span>
+          <span style="display: block;" *ngIf="application.presentationOption != '' && application.presentationTitle != ''">{{application.presentationOption}} presentation on {{application.presentationTitle}}</span>
         </div>
     </md-card-content>
     <md-card-actions>
