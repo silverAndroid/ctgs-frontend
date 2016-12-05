@@ -14,7 +14,7 @@ export class NewStudentApplicationComponent implements OnInit {
   dropdown: any;
   application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
   active = true;
-  presentationOptions = [{value: 'poster', label: 'Poster'}, {value: 'verbal', label: 'Verbal'}];
+  presentationOptions = ['Poster', 'Verbal'];
 
   constructor(private _applicationService: ApplicationService, private _router: Router) {
   }

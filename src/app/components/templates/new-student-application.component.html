@@ -20,8 +20,8 @@
                 name="presentationTitle"></md-input>
       <span>Presentation Options:</span>
       <md-radio-group [(ngModel)]="application.presentationOption" name="presentationOption">
-        <md-radio-button *ngFor="let option of presentationOptions" [value]="option.value" style="padding: 0 16px">
-          {{option.label}}
+        <md-radio-button *ngFor="let option of presentationOptions" [value]="option" style="padding: 0 16px">
+          {{option}}
         </md-radio-button>
       </md-radio-group>
     </form>
