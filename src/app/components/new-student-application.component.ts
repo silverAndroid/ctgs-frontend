@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class NewStudentApplicationComponent implements OnInit {
 
-  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '');
+  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
   active = true;
   presentationOptions = ['Poster', 'Verbal'];
 

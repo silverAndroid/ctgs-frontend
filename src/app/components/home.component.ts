@@ -45,6 +45,9 @@ export class HomeComponent implements OnInit {
             object.meals,
             object.owner,
             object.recommendation,
+            object.conference_detail,
+            object.presentation_title,
+            object.presentation_type,
             this.role
           );
           applications.push(application);
