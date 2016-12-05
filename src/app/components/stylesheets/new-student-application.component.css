@@ -12,3 +12,8 @@ md-card-content md-input {
   margin: 16px 64px;
   padding: 1px;
 }
+
+md-card-content ng2-select {
+  margin: 16px 64px;
+  padding: 1px;
+}
