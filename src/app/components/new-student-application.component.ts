@@ -9,7 +9,9 @@ import {Router} from "@angular/router";
   styleUrls: ['stylesheets/new-student-application.component.css']
 })
 export class NewStudentApplicationComponent implements OnInit {
-
+  
+  @ViewChild('dropdown')
+  dropdown: any;
   application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
   active = true;
   presentationOptions = [{value: 'poster', label: 'Poster'}, {value: 'verbal', label: 'Verbal'}];
@@ -21,7 +23,6 @@ export class NewStudentApplicationComponent implements OnInit {
 
   createApplication() {
     this.active = false;
-    console.log(this.application);
     this._applicationService.createApplication(this.application).subscribe((res) => {
       if (!res.err) {
         this._router.navigate(['/']);
@@ -29,9 +30,6 @@ export class NewStudentApplicationComponent implements OnInit {
     });
     setTimeout(() => this.active = true, 0);
   }
-
-  @ViewChild('dropdown')
-  dropdown: any;
 
   getPresentationType(event) {
     setTimeout(() => {
