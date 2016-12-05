@@ -18,21 +18,23 @@ import { StudentApplicationComponent } from './components/student-application.co
 import {ApplicationService} from "./services/application.service";
 import { NewStudentApplicationComponent } from './components/new-student-application.component';
 import {AlertsService} from "./services/alerts.service";
+import {Ng2SelectModule} from "ng2-material-select/dist/src/ng2-select.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     HomeComponent,
+    LoginComponent,
+    NewStudentApplicationComponent,
     RegisterComponent,
-    StudentApplicationComponent,
-    NewStudentApplicationComponent
+    StudentApplicationComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     MaterialModule.forRoot(),
+    Ng2SelectModule,
     routing
   ],
   providers: [ApplicationService, AlertsService, CookieService, LoggedInGuard, UserService],
