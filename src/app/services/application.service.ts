@@ -19,19 +19,19 @@ export class ApplicationService {
   }
 
   getApplications(): Observable<JSONResponseModel> {
-    return this._http.get(`${HTTPConnection.BASE_URL}/applications`)
+    return this._http.get('/applications')
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
 
   createApplication(application: StudentApplication) : Observable<JSONResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/applications`, {registration: application.registrationCost, transportation: application.transportationCost, accommodation: application.accommodationCost, meals: application.mealCost, conferenceDetail: application.conferenceDescription, presentationType: application.presentationOption, presentationTitle: application.presentationTitle, supervisor: 'rushil'})
+    return this._http.post('/applications', {registration: application.registrationCost, transportation: application.transportationCost, accommodation: application.accommodationCost, meals: application.mealCost, conferenceDetail: application.conferenceDescription, presentationType: application.presentationOption, presentationTitle: application.presentationTitle, supervisor: 'rushil'})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
   }
 
   makeRecommendation(recommendation: string, applicationID: number) : Observable<TextResponseModel> {
-    return this._http.put(`${HTTPConnection.BASE_URL}/application`, {recommendation: recommendation, applicationId: applicationID})
+    return this._http.put('/application', {recommendation: recommendation, applicationId: applicationID})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
   }

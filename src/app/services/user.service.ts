@@ -22,7 +22,7 @@ export class UserService {
   }
 
   login(user: User): Observable<TextResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/login`, {
+    return this._http.post('/login', {
       username: user.username,
       password: user.password,
       role: user.role
@@ -40,7 +40,7 @@ export class UserService {
   }
 
   register(user: User): Observable<TextResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/users`, {
+    return this._http.post('/users', {
       name: user.name,
       username: user.username,
       password: user.password,

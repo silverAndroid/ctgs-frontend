@@ -9,9 +9,7 @@ import {TextResponseModel} from "../models/text-response.model";
 export class HTTPConnection {
 
   private static roleKey = 'role';
-
-  public static BASE_URL = 'http://localhost:8080';
-
+  
   public static getRole(cookieService: CookieService): string {
     return this.getCookie(this.roleKey, cookieService);
   }
