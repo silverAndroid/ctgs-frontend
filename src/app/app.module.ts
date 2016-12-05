@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { Ng2SelectModule } from "ng2-material-select/dist/src/ng2-select.module";
 
+import { AdminGuard } from "./admin.guard";
 import { CookieService } from "angular2-cookie/services/cookies.service";
 import { LoggedInGuard } from "./logged-in.guard";
 import { UserService } from "./services/user.service";
@@ -41,7 +42,7 @@ import { NewStudentApplicationComponent } from './components/new-student-applica
     Ng2SelectModule,
     routing
   ],
-  providers: [ApplicationService, AlertsService, CookieService, LoggedInGuard, UserService],
+  providers: [AdminGuard, ApplicationService, AlertsService, CookieService, LoggedInGuard, UserService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
