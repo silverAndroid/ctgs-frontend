@@ -18,8 +18,8 @@
                 name="conferenceDescript"></md-input>
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
                 name="presentationTitle"></md-input>
-      <paper-dropdown-menu label="Presentation type" [value]="application.presentationOption">
-        <paper-listbox class="dropdown-content">
+      <paper-dropdown-menu #dropdown label="Presentation type">
+        <paper-listbox class="dropdown-content" (iron-select)="getPresentationType($event)">
           <paper-item *ngFor="let option of presentationOptions">{{option.label}}</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
