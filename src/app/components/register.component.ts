@@ -12,11 +12,14 @@ import {Constants} from "../constants";
 export class RegisterComponent implements OnInit {
   user: User = new User('', '', 'supervisor', '', '');
   active = true;
-  roles = Constants.CONST_ROLES;
+  roles = [];
 
   constructor(private _userService: UserService, private _router: Router) { }
 
   ngOnInit() {
+      Constants.CONST_ROLES.forEach((role) => {
+        this.roles.push(role);
+      });
       this.roles.splice(2, 1);
   }
 
