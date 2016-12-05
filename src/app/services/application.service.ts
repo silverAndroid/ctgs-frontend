@@ -25,7 +25,7 @@ export class ApplicationService {
   }
 
   createApplication(application: StudentApplication) : Observable<JSONResponseModel> {
-    return this._http.post(`${HTTPConnection.BASE_URL}/applications`, {registration: application.registrationCost, transportation: application.transportationCost, accommodation: application.accommodationCost, meals: application.mealCost, supervisor: 'rushil'})
+    return this._http.post(`${HTTPConnection.BASE_URL}/applications`, {registration: application.registrationCost, transportation: application.transportationCost, accommodation: application.accommodationCost, meals: application.mealCost, conferenceDetail: application.conferenceDescription, presentationType: application.presentationOption, presentationTitle: application.presentationTitle, supervisor: 'rushil'})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
   }

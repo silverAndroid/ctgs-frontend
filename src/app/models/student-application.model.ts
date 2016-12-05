@@ -3,7 +3,7 @@ import {Constants} from "../constants";
  * Created by silver_android on 30/11/16.
  */
 export class StudentApplication {
-  constructor(private _id: number, private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number,  private _owner: string, private _recommendation: string, private _role: string) {
+  constructor(private _id: number, private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number,  private _owner: string, private _recommendation: string, private _conferenceDescription: string, private _presentationTitle: string, private _presentationOption: string, private _role: string) {
     this.registrationCost = _registrationCost;
     this.transportationCost = _transportationCost;
     this.accommodationCost = _accommodationCost;
@@ -61,6 +61,30 @@ export class StudentApplication {
 
   get role(): string {
     return this._role;
+  }
+
+  get conferenceDescription(): string {
+    return this._conferenceDescription;
+  }
+
+  set conferenceDescription(value: string) {
+    this._conferenceDescription = value;
+  }
+
+  get presentationTitle(): string {
+    return this._presentationTitle;
+  }
+
+  set presentationTitle(value: string) {
+    this._presentationTitle = value;
+  }
+
+  get presentationOption(): string {
+    return this._presentationOption;
+  }
+
+  set presentationOption(value: string) {
+    this._presentationOption = value;
   }
 
   private static parseRecommendation(recommendation: string) : string {

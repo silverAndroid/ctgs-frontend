@@ -14,6 +14,11 @@
       <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
         <span md-prefix>$&nbsp;</span>
       </md-input>
+      <md-input placeholder="Conference Description" [(ngModel)]="application.conferenceDescription"
+                name="conferenceDescript"></md-input>
+      <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
+                name="presentationTitle"></md-input>
+      <ng2-select [placeholder]="'Select a type of presentation'" [options]="presentationOptions" [(ngModel)]="application.presentationOption"></ng2-select>
     </form>
   </md-card-content>
   <md-card-actions>
