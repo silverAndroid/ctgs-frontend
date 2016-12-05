@@ -2,16 +2,16 @@
   <md-card-title>New Application</md-card-title>
   <md-card-content>
     <form *ngIf="active" id="new-application-form" (ngSubmit)="createApplication()" #newApplicationForm="ngForm">
-      <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
+      <md-input placeholder="Registration Cost*" [(ngModel)]="application.registrationCost" name="registration" required>
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Transportation Cost" [(ngModel)]="application.transportationCost" name="transportation">
+      <md-input placeholder="Transportation Cost*" [(ngModel)]="application.transportationCost" name="transportation" required>
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Accommodation Cost" [(ngModel)]="application.accommodationCost" name="accommodation">
+      <md-input placeholder="Accommodation Cost*" [(ngModel)]="application.accommodationCost" name="accommodation" required>
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
+      <md-input placeholder="Meal Cost*" [(ngModel)]="application.mealCost" name="meals" required>
         <span md-prefix>$&nbsp;</span>
       </md-input>
       <md-input placeholder="Conference Description" [(ngModel)]="application.conferenceDescription"
