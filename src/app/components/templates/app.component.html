@@ -9,7 +9,7 @@
 
   <md-menu #menu="mdMenu" x-position="before">
     <button md-menu-item (click)="logout()"> Sign Out </button>
-    <button md-button routerLink="/register" type="button" *ngIf="currentRole == 'admin'">Create User</button>
+    <button md-menu-item routerLink="/register" type="button" *ngIf="currentRole == 'admin'">Create User</button>
   </md-menu>
 </md-toolbar>
 <router-outlet></router-outlet>
