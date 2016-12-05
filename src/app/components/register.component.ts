@@ -16,7 +16,9 @@ export class RegisterComponent implements OnInit {
 
   constructor(private _userService: UserService, private _router: Router) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+      this.roles.splice(2, 1);
+  }
 
   register() {
     this.active = false;
