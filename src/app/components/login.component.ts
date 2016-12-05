@@ -14,8 +14,7 @@ export class LoginComponent implements OnInit {
   active = true;
   roles = [{value: 'supervisor', label: 'Supervisor'}, {value: 'student', label: 'Requester'}];
 
-  constructor(private _userService: UserService, private _router: Router) {
-  }
+  constructor(private _userService: UserService, private _router: Router) {}
 
   ngOnInit() {
   }
