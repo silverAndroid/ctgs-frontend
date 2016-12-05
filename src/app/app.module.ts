@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
@@ -16,6 +16,7 @@ import { routing } from "./app.routing";
 import { AppComponent } from './components/app.component';
 import { LoginComponent } from './components/login.component';
 import { HomeComponent } from './components/home.component';
+import { PolymerElement } from "@vaadin/angular2-polymer";
 import { RegisterComponent } from './components/register.component';
 import { StudentApplicationComponent } from './components/student-application.component';
 import { NewStudentApplicationComponent } from './components/new-student-application.component';
@@ -26,6 +27,7 @@ import { NewStudentApplicationComponent } from './components/new-student-applica
     HomeComponent,
     LoginComponent,
     NewStudentApplicationComponent,
+    PolymerElement('paper-dropdown-menu'),
     RegisterComponent,
     StudentApplicationComponent
   ],
@@ -38,6 +40,7 @@ import { NewStudentApplicationComponent } from './components/new-student-applica
     routing
   ],
   providers: [ApplicationService, AlertsService, CookieService, LoggedInGuard, UserService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
