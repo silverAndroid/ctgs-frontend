@@ -8,11 +8,12 @@ import {LoginComponent} from "./components/login.component";
 import {LoggedInGuard} from "./logged-in.guard";
 import {RegisterComponent} from "./components/register.component";
 import {NewStudentApplicationComponent} from "./components/new-student-application.component";
+import {AdminGuard} from "./admin.guard";
 
 const routes: Routes = [
   {path: '', component: HomeComponent, canActivate: [LoggedInGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
+  {path: 'register', component: RegisterComponent, canActivate: [LoggedInGuard, AdminGuard]},
   {path: 'applications/new', component: NewStudentApplicationComponent, canActivate: [LoggedInGuard]}
 ];
 
