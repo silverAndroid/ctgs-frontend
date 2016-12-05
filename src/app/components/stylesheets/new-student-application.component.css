@@ -15,4 +15,5 @@ md-card-content md-input {
 
 md-card-content paper-dropdown-menu {
   display: block;
+  padding: 0 64px;
 }
