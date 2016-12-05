@@ -1,10 +1,12 @@
 md-card {
-  max-width: 40%;
+  min-height: 0;
+  width: 92%;
+  max-width: 250px;
   position: absolute;
-  top: 15%;
-  left: 40%;
-  padding: 30px 0 50px;
-  border-radius: 4px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  border-radius: 8px;
 }
 
 md-card-content md-input {
