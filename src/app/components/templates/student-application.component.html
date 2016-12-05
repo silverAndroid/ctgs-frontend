@@ -7,6 +7,7 @@
     </md-card-subtitle>
     <md-card-content>
         <div class="wrapper">
+          <span style="font-weight: 600;">{{application.conferenceDescription}}</span>
             <div class="item">
                 <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-currency-usd"></md-icon>
                 <span class="cost">${{application.registrationCost}}</span>
@@ -24,6 +25,7 @@
                 <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-food"></md-icon>
                 <span class="cost">${{application.mealCost}}</span>
             </div>
+          <span>{{application.presentationOption}} presentation on {{application.presentationTitle}}</span>
         </div>
     </md-card-content>
     <md-card-actions>
