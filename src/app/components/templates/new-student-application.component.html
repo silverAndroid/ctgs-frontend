@@ -31,7 +31,7 @@
       <md-autocomplete
         placeholder="Search Google Maps"
         [items]="locations"
-        [itemText]="'description'"
+        [itemText]="'name'"
         [getMatches]="searchGoogleMaps"
         [(selectedItem)]="application.conferenceLocation">
       </md-autocomplete>
