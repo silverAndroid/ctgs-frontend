@@ -39,12 +39,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     let role = HTTPConnection.getRole(this._cookieService);
     let username = HTTPConnection.getUser(this._cookieService);
-    if (role == 'admin') this._router.navigate(['/register']);
+    if (role == 'admin')
+      this._router.navigate(['/register']);
     else {
       this._applicationService.getApplications(role, username).subscribe((res) => {
         if (!res.err) {
           let applications: StudentApplication[] = [];
           res.data.forEach((object) => {
+            // TODO: Fix constructor for Student Application
             let application: StudentApplication = new StudentApplication(
               object.id,
               object.registration,
@@ -56,6 +58,8 @@ export class HomeComponent implements OnInit {
               object.conference_detail,
               object.presentation_title,
               object.presentation_type,
+              new Date(),
+              '',
               this.role
             );
             applications.push(application);
