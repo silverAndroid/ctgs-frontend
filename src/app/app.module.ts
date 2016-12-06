@@ -20,6 +20,7 @@ import { RegisterComponent } from './components/register.component';
 import { StudentApplicationComponent } from './components/student-application.component';
 import { NewStudentApplicationComponent } from './components/new-student-application.component';
 import { MdAutocomplete } from "./components/md-autocomplete.component";
+import {GoogleMapsService} from "./services/google-maps.service";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MdAutocomplete } from "./components/md-autocomplete.component";
     MaterialModule.forRoot(),
     routing
   ],
-  providers: [AdminGuard, ApplicationService, AlertsService, CookieService, LoggedInGuard, UserService],
+  providers: [AdminGuard, ApplicationService, AlertsService, CookieService, GoogleMapsService, LoggedInGuard, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
