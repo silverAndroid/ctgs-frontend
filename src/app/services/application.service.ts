@@ -8,6 +8,7 @@ import {HTTPConnection} from "./http.connection";
 import {JSONResponseModel} from "../models/json-response.model";
 import {StudentApplication} from "../models/student-application.model";
 import {TextResponseModel} from "../models/text-response.model";
+import {AlertsService} from "./alerts.service";
 
 @Injectable()
 export class ApplicationService {
@@ -15,12 +16,14 @@ export class ApplicationService {
   private recommendationSource = new Subject<RecommendationModel>();
   recommendation$ = this.recommendationSource.asObservable();
 
-  constructor(private _http: Http) {}
+  constructor(private _http: Http, private _snackbar: AlertsService) {}
 
   getApplications(role: string, username: string): Observable<JSONResponseModel> {
     return this._http.get(`${role}/applications/${username}`)
       .map(HTTPConnection.extractData)
-      .catch(HTTPConnection.handleError);
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      });
   }
 
   createApplication(application: StudentApplication): Observable<JSONResponseModel> {
@@ -34,13 +37,17 @@ export class ApplicationService {
       presentationTitle: application.presentationTitle
     })
       .map(HTTPConnection.extractData)
-      .catch(HTTPConnection.handleError)
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      })
   }
 
   makeRecommendation(recommendation: string, applicationID: number): Observable<TextResponseModel> {
     return this._http.put('/application', {recommendation: recommendation, applicationId: applicationID})
       .map(HTTPConnection.extractData)
-      .catch(HTTPConnection.handleError)
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      })
   }
 
   emitRecommendation(recommendation: RecommendationModel) {

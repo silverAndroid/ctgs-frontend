@@ -2,6 +2,8 @@ import {Response} from "@angular/http";
 import {Observable} from "rxjs/Observable";
 import {CookieService} from "angular2-cookie/core";
 import {TextResponseModel} from "../models/text-response.model";
+import {MdSnackBarRef, MdSnackBar, MdSnackBarConfig} from "@angular/material";
+import {AlertsService} from "./alerts.service";
 /**
  * Created by silve on 2016-08-07.
  */
@@ -52,11 +54,12 @@ export class HTTPConnection {
     return res.headers.get('content-type').indexOf('application/json') >= 0 ? res.json() : new TextResponseModel(res.status == 500 || res.status == 403 || res.status == 401 || res.status == 400, res.text()) || {};
   }
 
-  public static handleError(error: any) {
+  public static handleError(error: any, _snackbar?: AlertsService) {
     // In a real world app, we might use a remote logging infrastructure
     // We'd also dig deeper into the error to get a better message
     let errMsg = "Error: " + (error.message) ? error.message : error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-    console.error(errMsg); // log to console instead
+    console.error(error._body); // log to console instead
+    _snackbar.showMsg(error._body, false, '', 5);
     return Observable.throw(errMsg);
   }
 }

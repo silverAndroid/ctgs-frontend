@@ -3,6 +3,7 @@ import {User} from "../models/user.model";
 import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {Constants} from "../constants";
+import {AlertsService} from "../services/alerts.service";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
   active = true;
   roles = [];
 
-  constructor(private _userService: UserService, private _router: Router) {}
+  constructor(private _userService: UserService, private _router: Router, private _snackbar: AlertsService) {}
 
   ngOnInit() {
     Constants.CONST_ROLES.forEach((role) => {
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
       if (!res.err) {
         this._router.navigate(['']);
       }
+      this._snackbar.showMsg(res.message, false);
     });
     setTimeout(() => this.active = true, 0);
   }

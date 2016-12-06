@@ -1,5 +1,4 @@
 import {Component, OnInit} from "@angular/core";
-import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {Constants} from "../constants";
@@ -30,9 +29,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.active = false;
     this._userService.register(this.user).subscribe((res) => {
-      if (!res.err) {
-        this._snackbar.showMsg('Successfully registered user', false);
-      }
+      this._snackbar.showMsg(res.message, false);
     });
     setTimeout(() => this.active = true, 0);
   }

@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from "@angular/core";
 import {StudentApplication} from "../models/student-application.model";
 import {ApplicationService} from "../services/application.service";
 import {Router} from "@angular/router";
+import {AlertsService} from "../services/alerts.service";
 
 @Component({
   selector: 'new-student-application',
@@ -16,7 +17,7 @@ export class NewStudentApplicationComponent implements OnInit {
   active = true;
   presentationOptions = ['Poster', 'Verbal'];
 
-  constructor(private _applicationService: ApplicationService, private _router: Router) {
+  constructor(private _applicationService: ApplicationService, private _router: Router, private _snackbar: AlertsService) {
   }
 
   ngOnInit() {
@@ -27,6 +28,9 @@ export class NewStudentApplicationComponent implements OnInit {
     this._applicationService.createApplication(this.application).subscribe((res) => {
       if (!res.err) {
         this._router.navigate(['/']);
+        this._snackbar.showMsg('Created application successfully', false);
+      } else {
+        this._snackbar.showMsg('Failed to create application', false);
       }
     });
     setTimeout(() => this.active = true, 0);

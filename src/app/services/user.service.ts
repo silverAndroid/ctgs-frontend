@@ -9,6 +9,7 @@ import {Observable, Subject} from "rxjs";
 import {User} from "../models/user.model";
 import {TextResponseModel} from "../models/text-response.model";
 import {JSONResponseModel} from "../models/json-response.model";
+import {AlertsService} from "./alerts.service";
 
 @Injectable()
 export class UserService {
@@ -18,7 +19,7 @@ export class UserService {
   private loggedInSource = new Subject<boolean>();
   loggedIn$ = this.loggedInSource.asObservable();
 
-  constructor(private _http: Http, private _cookieService: CookieService) {
+  constructor(private _http: Http, private _cookieService: CookieService, private _snackbar: AlertsService) {
     this.loggedIn = !(!HTTPConnection.getRole(_cookieService));
   }
 
@@ -38,11 +39,13 @@ export class UserService {
         this.loggedIn = true;
         return res;
       })
-      .catch(HTTPConnection.handleError);
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      });
   }
 
   register(user: User): Observable<TextResponseModel> {
-    return this._http.post('/users', {
+    return this._http.post('http://localhost:8080/users', {
       name: user.name,
       username: user.username,
       password: user.password,
@@ -51,13 +54,17 @@ export class UserService {
       supervisor: user.supervisor
     })
       .map(HTTPConnection.extractData)
-      .catch(HTTPConnection.handleError);
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      });
   }
 
   getSupervisors() : Observable<JSONResponseModel> {
     return this._http.get('http://localhost:8080/supervisors')
       .map(HTTPConnection.extractData)
-      .catch(HTTPConnection.handleError);
+      .catch(err => {
+        return HTTPConnection.handleError(err, this._snackbar)
+      });
   }
 
   logout() {

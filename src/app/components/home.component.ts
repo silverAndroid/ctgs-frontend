@@ -4,6 +4,7 @@ import {CookieService} from "angular2-cookie/services/cookies.service";
 import {ApplicationService} from "../services/application.service";
 import {HTTPConnection} from "../services/http.connection";
 import {Constants} from "../constants";
+import {AlertsService} from "../services/alerts.service";
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
   pendingApplications: StudentApplication[] = [];
   role: string = HTTPConnection.getRole(this._cookieService);
 
-  constructor(private _applicationService: ApplicationService, private _cookieService: CookieService) {
+  constructor(private _applicationService: ApplicationService, private _cookieService: CookieService, private _snackbar: AlertsService) {
     _applicationService.recommendation$.subscribe((recommendation) => {
       let newApplication: StudentApplication = null;
       this.applications.map((application) => {
@@ -57,6 +58,8 @@ export class HomeComponent implements OnInit {
             this.pendingApplications.push(application);
         });
         this.applications = applications;
+      } else {
+        this._snackbar.showMsg('Failed to retrieve applications', false);
       }
     });
   }

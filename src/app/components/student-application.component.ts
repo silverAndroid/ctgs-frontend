@@ -17,7 +17,7 @@ export class StudentApplicationComponent implements OnInit {
   private CONST_ACCEPTED = Constants.CONST_ACCEPTED;
   private CONST_REJECTED = Constants.CONST_REJECTED;
 
-  constructor(private _applicationService: ApplicationService, private _alertService: AlertsService) {
+  constructor(private _applicationService: ApplicationService, private _snackbar: AlertsService) {
     _applicationService.recommendation$.subscribe((recommendation) => {
       if (this.application.id == recommendation.applicationID)
         this.changeRecommendationColour(recommendation.wasAccepted ? this.CONST_ACCEPTED : this.CONST_REJECTED);
@@ -32,8 +32,8 @@ export class StudentApplicationComponent implements OnInit {
     this._applicationService.makeRecommendation(this.CONST_ACCEPTED, this.application.id).subscribe((res) => {
       if (!res.err) {
         this._applicationService.emitRecommendation(new RecommendationModel(this.application.id, true));
-        this._alertService.showMsg(`${this.CONST_ACCEPTED} application`, false);
       }
+      this._snackbar.showMsg(res.message, false);
     });
   }
 
@@ -41,8 +41,8 @@ export class StudentApplicationComponent implements OnInit {
     this._applicationService.makeRecommendation(this.CONST_REJECTED, this.application.id).subscribe((res) => {
       if (!res.err) {
         this._applicationService.emitRecommendation(new RecommendationModel(this.application.id, false));
-        this._alertService.showMsg(`${this.CONST_REJECTED} application`, false);
       }
+      this._snackbar.showMsg(res.message, false);
     });
   }
 
