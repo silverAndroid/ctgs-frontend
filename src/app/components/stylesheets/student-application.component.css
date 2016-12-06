@@ -10,7 +10,7 @@
 
 md-card {
   border-radius: 8px;
-  margin: 0 20px;
+  margin: 0 32px;
 }
 
 button#action-accept {
@@ -19,14 +19,6 @@ button#action-accept {
 
 button#action-reject {
   color: #F44336;
-}
-
-.ng-valid[required], .ng-valid.required  {
-  dividerColor: 'primary';
-}
-
-.ng-invalid:not(form)  {
-  dividerColor: 'warn';
 }
 
 @media (min-width: 768px) {
