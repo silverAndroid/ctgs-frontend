@@ -1,7 +1,7 @@
 /**
- * Created by silver_android on 06/12/16.
+ * Copied from https://gist.github.com/vladimir-ivanov/cc988dbac32645b13b03
  */
-import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
 
 @Component({
   selector: "md-autocomplete",
@@ -34,6 +34,9 @@ export class MdAutocomplete implements OnInit {
 
   @Output()
   searchTextChange = new EventEmitter();
+
+  @Input('poweredGoogle')
+  poweredByGoogle : boolean = false;
 
   popupVisible = false;
 
