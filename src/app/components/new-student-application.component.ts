@@ -40,9 +40,8 @@ export class NewStudentApplicationComponent implements OnInit {
   searchGoogleMaps(items: any[], itemText: string, searchText: string) {
     let locations: LocationModel[] = [];
     this._googleMapsService.search(searchText).subscribe(res => {
-      console.table(res);
-      console.log(res);
-      locations = locations.concat(res.data.predictions);
+      console.table(res.data);
+      locations = locations.concat(res.data);
     });
     return locations.copyWithin(0, 0, 5);
   }
