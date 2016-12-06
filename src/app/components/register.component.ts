@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {UserService} from "../services/user.service";
 import {User} from "../models/user.model";
 import {Constants} from "../constants";
+import {AlertsService} from "../services/alerts.service";
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   roles = [];
   supervisors = [];
 
-  constructor(private _userService: UserService, private _router: Router) {
+  constructor(private _userService: UserService, private _snackbar: AlertsService) {
   }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
     this.active = false;
     this._userService.register(this.user).subscribe((res) => {
       if (!res.err) {
-        this._router.navigate(['/login']);
+        this._snackbar.showMsg('Successfully registered user', false);
       }
     });
     setTimeout(() => this.active = true, 0);
