@@ -15,10 +15,10 @@ md-card-content md-input {
   padding: 1px;
 }
 
-#new-application-form md-radio-button {
+.new-application-form md-radio-button {
   display: block;
 }
 
-#new-application-form span {
+.new-application-form span {
   display: block;
 }

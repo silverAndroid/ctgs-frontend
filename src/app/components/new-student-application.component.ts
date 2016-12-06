@@ -3,6 +3,8 @@ import {StudentApplication} from "../models/student-application.model";
 import {ApplicationService} from "../services/application.service";
 import {Router} from "@angular/router";
 import {AlertsService} from "../services/alerts.service";
+import {GoogleMapsService} from "../services/google-maps.service";
+import {LocationModel} from "../models/location.model";
 
 @Component({
   selector: 'new-student-application',
@@ -11,14 +13,13 @@ import {AlertsService} from "../services/alerts.service";
 })
 export class NewStudentApplicationComponent implements OnInit {
 
-  @ViewChild('dropdown')
-  dropdown: any;
-  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', '');
+  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', new Date(), '', '');
   active = true;
   presentationOptions = ['Poster', 'Verbal'];
+  locations : LocationModel[] = [];
+  page = 0;
 
-  constructor(private _applicationService: ApplicationService, private _router: Router, private _snackbar: AlertsService) {
-  }
+  constructor(private _applicationService: ApplicationService, private _router: Router, private _googleMapsService: GoogleMapsService, private _snackbar: AlertsService) {}
 
   ngOnInit() {
   }
@@ -36,9 +37,11 @@ export class NewStudentApplicationComponent implements OnInit {
     setTimeout(() => this.active = true, 0);
   }
 
-  getPresentationType(event) {
-    setTimeout(() => {
-      this.application.presentationOption = this.dropdown.nativeElement.value;
-    }, 0);
+  searchGoogleMaps(items: any[], itemText: string, searchText: string) {
+    let locations: LocationModel[] = [];
+    this._googleMapsService.search(searchText).subscribe(res => {
+      locations.concat(res['predictions']);
+    });
+    return locations.copyWithin(0, 0, 5);
   }
 }

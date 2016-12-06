@@ -1,7 +1,8 @@
 <md-card align="center">
   <md-card-title>New Application</md-card-title>
   <md-card-content>
-    <form *ngIf="active" id="new-application-form" (ngSubmit)="createApplication()" #newApplicationForm="ngForm">
+    <h2>Costs</h2>
+    <form *ngIf="active && page == 0" class="new-application-form" #newApplicationForm="ngForm">
       <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
         <span md-prefix>$&nbsp;</span>
       </md-input>
@@ -14,6 +15,8 @@
       <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
         <span md-prefix>$&nbsp;</span>
       </md-input>
+    </form>
+    <form *ngIf="active && page == 1" class="new-application-form" #newApplicationForm="ngForm">
       <md-input placeholder="Conference Description" [(ngModel)]="application.conferenceDescription"
                 name="conferenceDescript"></md-input>
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
@@ -24,6 +27,13 @@
           {{option}}
         </md-radio-button>
       </md-radio-group>
+      <md-autocomplete
+        placeholder="Search Google Maps"
+        [items]="locations"
+        [itemText]="'description'"
+        [getMatches]="searchGoogleMaps"
+        [(selectedItem)]="application.conferenceLocation">
+      </md-autocomplete>
     </form>
   </md-card-content>
   <md-card-actions>
