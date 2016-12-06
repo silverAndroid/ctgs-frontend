@@ -1,7 +1,8 @@
 <md-card align="center">
   <md-card-title>New Application</md-card-title>
+  <md-card-subtitle *ngIf="page == 0">Costs</md-card-subtitle>
+  <md-card-subtitle *ngIf="page == 1">Conference Details</md-card-subtitle>
   <md-card-content>
-    <h2>Costs</h2>
     <form *ngIf="active && page == 0" class="new-application-form" #newApplicationForm="ngForm">
       <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
         <span md-prefix>$&nbsp;</span>
