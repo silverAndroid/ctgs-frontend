@@ -5,6 +5,7 @@ import {ApplicationService} from "../services/application.service";
 import {HTTPConnection} from "../services/http.connection";
 import {Constants} from "../constants";
 import {AlertsService} from "../services/alerts.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -17,20 +18,24 @@ export class HomeComponent implements OnInit {
   pendingApplications: StudentApplication[] = [];
   role: string = HTTPConnection.getRole(this._cookieService);
 
-  constructor(private _applicationService: ApplicationService, private _cookieService: CookieService, private _snackbar: AlertsService) {
-    _applicationService.recommendation$.subscribe((recommendation) => {
-      let newApplication: StudentApplication = null;
-      this.applications.map((application) => {
-        if (application.id == recommendation.applicationID) {
-          newApplication = application;
-          application.recommendation = recommendation.wasAccepted ? Constants.CONST_ACCEPTED : Constants.CONST_REJECTED;
-        }
-        return application;
+  constructor(private _applicationService: ApplicationService, private _cookieService: CookieService, private _snackbar: AlertsService, private _router: Router) {
+    if (this.role == 'admin')
+      this._router.navigate(['/register']);
+    else {
+      _applicationService.recommendation$.subscribe((recommendation) => {
+        let newApplication: StudentApplication = null;
+        this.applications.map((application) => {
+          if (application.id == recommendation.applicationID) {
+            newApplication = application;
+            application.recommendation = recommendation.wasAccepted ? Constants.CONST_ACCEPTED : Constants.CONST_REJECTED;
+          }
+          return application;
+        });
+        let index = this.pendingApplications.indexOf(newApplication);
+        if (index > -1)
+          this.pendingApplications.splice(index, 1);
       });
-      let index = this.pendingApplications.indexOf(newApplication);
-      if (index > -1)
-        this.pendingApplications.splice(index, 1);
-    });
+    }
   }
 
   ngOnInit() {
