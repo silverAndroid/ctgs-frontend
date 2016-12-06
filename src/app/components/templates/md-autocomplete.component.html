@@ -12,7 +12,7 @@
   <md-card-content>
     <md-list class="md-autocomplete-suggestions" dense>
       <md-list-item *ngFor="let item of matches" (mousedown)="select(item)">
-        <button md-button>{{item[itemText]}}</button>
+        <button md-menu-item>{{item[itemText]}}</button>
       </md-list-item>
     </md-list>
     <img src="../../../assets/powered_by_google_on_white.png" alt="Powered by Google" *ngIf="poweredByGoogle"/>
