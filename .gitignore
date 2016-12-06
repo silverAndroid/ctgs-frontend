@@ -6,7 +6,6 @@
 
 # dependencies
 /node_modules
-/src/app/secret-constants.ts
 
 # IDEs and editors
 /.idea
