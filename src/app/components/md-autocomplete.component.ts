@@ -55,7 +55,7 @@ export class MdAutocomplete implements OnInit {
   }
 
   onLeave() {
-    this.popupVisible = false;
+    this.popupVisible = true;
   }
 
   //[(value)] is buggy and does not propagate changes on the md-input so we can get the value correctly
