@@ -38,8 +38,8 @@
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="page = 0" *ngIf="page == 0">Back</button>
-    <button md-button (click)="page = 1" *ngIf="page == 1">Next</button>
+    <button md-button (click)="page = 0" *ngIf="page == 1">Back</button>
+    <button md-button (click)="page = 1" *ngIf="page == 0">Next</button>
     <button md-button type="submit" (click)="createApplication()" *ngIf="page == 1">Submit</button>
     <button md-button routerLink="/" type="button">Cancel</button>
   </md-card-actions>
