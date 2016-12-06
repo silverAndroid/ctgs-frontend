@@ -2,6 +2,7 @@
  * Copied from https://gist.github.com/vladimir-ivanov/cc988dbac32645b13b03
  */
 import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
+import {GoogleMapsService} from "../services/google-maps.service";
 
 @Component({
   selector: "md-autocomplete",
@@ -41,6 +42,8 @@ export class MdAutocomplete implements OnInit {
   popupVisible = false;
 
   private matches = [];
+
+  constructor(private _googleMapsService: GoogleMapsService){}
 
   ngOnInit() {
     this.setMatches();
