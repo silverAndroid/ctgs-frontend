@@ -1,4 +1,4 @@
-<md-card align="center">
+<md-card align="center" id="registerCard">
   <md-card-title>Register</md-card-title>
   <md-card-content>
     <form *ngIf="active" id="register-form" (ngSubmit)="register()" #registerForm="ngForm">
@@ -15,8 +15,10 @@
       <md-autocomplete
         placeholder="Supervisor"
         [items]="supervisors"
+        [itemText]="'display'"
         [getMatches]="getMatches"
-        [(selectedItem)]="supervisorSelected"></md-autocomplete>
+        [(selectedItem)]="user.supervisor"
+        *ngIf="user.role == 'student'"></md-autocomplete>
     </form>
   </md-card-content>
   <md-card-actions>

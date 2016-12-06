@@ -1,35 +1,35 @@
 /**
  * Created by silver_android on 06/12/16.
  */
-import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from "@angular/core";
 
 @Component({
   selector: "md-autocomplete",
   templateUrl: 'templates/md-autocomplete.component.html',
 })
 export class MdAutocomplete implements OnInit {
-  @Input()
+  @Input('placeholder')
   placeholder: string;
 
-  @Input()
+  @Input('required')
   required: boolean = false;
 
-  @Input()
+  @Input('items')
   items = [];
 
-  @Input()
+  @Input('itemText')
   itemText: string;
 
-  @Input()
+  @Input('getMatches')
   getMatches: Function;
 
-  @Input()
+  @Input('selectedItem')
   selectedItem;
 
   @Output()
   selectedItemChange = new EventEmitter();
 
-  @Input()
+  @Input('searchText')
   searchText: string;
 
   @Output()
@@ -49,7 +49,7 @@ export class MdAutocomplete implements OnInit {
   }
 
   onLeave() {
-    this.popupVisible = false;
+    this.popupVisible = true;
   }
 
   //[(value)] is buggy and does not propagate changes on the md-input so we can get the value correctly
@@ -68,7 +68,7 @@ export class MdAutocomplete implements OnInit {
 
   private setMatches() {
     if (this.searchText) {
-      this.matches = this.getMatches(this.searchText);
+      this.matches = this.getMatches(this.items, this.itemText, this.searchText);
     } else {
       this.matches = this.items;
     }

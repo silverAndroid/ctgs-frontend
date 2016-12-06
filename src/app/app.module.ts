@@ -19,12 +19,14 @@ import { HomeComponent } from './components/home.component';
 import { RegisterComponent } from './components/register.component';
 import { StudentApplicationComponent } from './components/student-application.component';
 import { NewStudentApplicationComponent } from './components/new-student-application.component';
+import {MdAutocomplete} from "./components/md-autocomplete";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    MdAutocomplete,
     NewStudentApplicationComponent,
     RegisterComponent,
     StudentApplicationComponent

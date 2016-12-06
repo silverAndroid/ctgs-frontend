@@ -47,14 +47,15 @@ export class UserService {
       username: user.username,
       password: user.password,
       email: user.email,
-      role: user.role
+      role: user.role,
+      supervisor: user.supervisor
     })
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
 
   getSupervisors() : Observable<JSONResponseModel> {
-    return this._http.get('/supervisors')
+    return this._http.get('http://localhost:8080/supervisors')
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }

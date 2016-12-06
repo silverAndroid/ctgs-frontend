@@ -3,7 +3,7 @@
  */
 export class User {
 
-  constructor(private _username: string, private _password: string, private _role: string, private _name?: string, private _email?: string) {}
+  constructor(private _username: string, private _password: string, private _role: string, private _name?: string, private _email?: string, private _supervisor?: string) {}
 
   get username(): string {
     return this._username;
@@ -43,5 +43,13 @@ export class User {
 
   set email(value: string) {
     this._email = value;
+  }
+
+  get supervisor(): string {
+    return this._supervisor;
+  }
+
+  set supervisor(value: string) {
+    this._supervisor = value;
   }
 }

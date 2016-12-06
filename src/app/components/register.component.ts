@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
-import { UserService } from "../services/user.service";
-import { User } from "../models/user.model";
+import {Component, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
+import {UserService} from "../services/user.service";
+import {User} from "../models/user.model";
 import {Constants} from "../constants";
 
 @Component({
@@ -14,15 +14,16 @@ export class RegisterComponent implements OnInit {
   active = true;
   roles = [];
   supervisors = [];
-  supervisorSelected = '';
 
-  constructor(private _userService: UserService, private _router: Router) { }
+  constructor(private _userService: UserService, private _router: Router) {
+  }
 
   ngOnInit() {
-      Constants.CONST_ROLES.forEach((role) => {
-        this.roles.push(role);
-      });
-      this.roles.splice(2, 1);
+    this.getSupervisors();
+    Constants.CONST_ROLES.forEach((role) => {
+      this.roles.push(role);
+    });
+    this.roles.splice(2, 1);
   }
 
   register() {
@@ -38,17 +39,21 @@ export class RegisterComponent implements OnInit {
   getSupervisors() {
     this._userService.getSupervisors().subscribe(res => {
       if (!res.err) {
-        this.supervisors = res.data;
+        let supervisors = [];
+        res.data.forEach(object => {
+          supervisors.push({display: object.username});
+        });
+        this.supervisors = supervisors;
       }
     })
   }
 
-  getMatches(searchText: string) {
-    let matches : string[] = [];
+  getMatches(items: any[], itemText: string, searchText: string) {
+    let matches: string[] = [];
     searchText = `(${searchText})`;
-    this.supervisors.forEach(supervisor => {
-      if (matches.length <= 5 && supervisor.match(new RegExp(searchText)))
-        matches.push(supervisor)
+    items.forEach(item => {
+      if (matches.length <= 5 && item[itemText].match(new RegExp(searchText)))
+        matches.push(item)
     });
     return matches;
   }

@@ -31,8 +31,7 @@ export class ApplicationService {
       meals: application.mealCost,
       conferenceDetail: application.conferenceDescription,
       presentationType: application.presentationOption,
-      presentationTitle: application.presentationTitle,
-      supervisor: 'rushil'
+      presentationTitle: application.presentationTitle
     })
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)

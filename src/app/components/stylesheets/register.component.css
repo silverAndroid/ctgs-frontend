@@ -1,4 +1,4 @@
-md-card {
+#registerCard {
   min-height: 0;
   width: 92%;
   max-width: 325px;
@@ -9,9 +9,9 @@ md-card {
   margin: 16px 0;
 }
 
-md-card-content md-input {
+md-input {
   display: block;
-  margin: 16px 64px;
+  margin: 8px 32px;
   padding: 1px;
 }
 
