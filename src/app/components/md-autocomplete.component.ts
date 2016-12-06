@@ -36,7 +36,7 @@ export class MdAutocomplete implements OnInit {
   @Output()
   searchTextChange = new EventEmitter();
 
-  @Input('poweredGoogle')
+  @Input('poweredByGoogle')
   poweredByGoogle : boolean = false;
 
   popupVisible = false;

@@ -29,11 +29,12 @@
         </md-radio-button>
       </md-radio-group>
       <md-autocomplete
-        placeholder="Search Google Maps"
+        placeholder="Conference Location"
         [items]="locations"
         [itemText]="'name'"
         [getMatches]="searchGoogleMaps"
-        [(selectedItem)]="application.conferenceLocation">
+        [(selectedItem)]="application.conferenceLocation"
+        [poweredByGoogle]="true">
       </md-autocomplete>
     </form>
   </md-card-content>
