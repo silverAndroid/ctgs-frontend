@@ -61,7 +61,7 @@ export class MdAutocomplete implements OnInit {
   }
 
   select(item) {
-    this.selectedItemChange.emit(item);
+    this.selectedItemChange.emit(item[this.itemText]);
     this.searchText = item[this.itemText];
     this.popupVisible = false;
   }
