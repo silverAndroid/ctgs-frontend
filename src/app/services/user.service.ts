@@ -8,6 +8,7 @@ import {HTTPConnection} from "./http.connection";
 import {Observable, Subject} from "rxjs";
 import {User} from "../models/user.model";
 import {TextResponseModel} from "../models/text-response.model";
+import {JSONResponseModel} from "../models/json-response.model";
 
 @Injectable()
 export class UserService {
@@ -48,6 +49,12 @@ export class UserService {
       email: user.email,
       role: user.role
     })
+      .map(HTTPConnection.extractData)
+      .catch(HTTPConnection.handleError);
+  }
+
+  getSupervisors() : Observable<JSONResponseModel> {
+    return this._http.get('/supervisors')
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }

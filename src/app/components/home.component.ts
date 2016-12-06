@@ -33,7 +33,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._applicationService.getApplications().subscribe((res) => {
+    let role = HTTPConnection.getRole(this._cookieService);
+    let username = HTTPConnection.getUser(this._cookieService);
+    this._applicationService.getApplications(role, username).subscribe((res) => {
       if (!res.err) {
         let applications: StudentApplication[] = [];
         res.data.forEach((object) => {

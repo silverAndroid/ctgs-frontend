@@ -12,6 +12,11 @@
           {{role.label}}
         </md-radio-button>
       </md-radio-group>
+      <md-autocomplete
+        placeholder="Supervisor"
+        [items]="supervisors"
+        [getMatches]="getMatches"
+        [(selectedItem)]="supervisorSelected"></md-autocomplete>
     </form>
   </md-card-content>
   <md-card-actions>

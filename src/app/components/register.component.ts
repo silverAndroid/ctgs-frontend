@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   user: User = new User('', '', 'supervisor', '', '');
   active = true;
   roles = [];
+  supervisors = [];
+  supervisorSelected = '';
 
   constructor(private _userService: UserService, private _router: Router) { }
 
@@ -31,5 +33,23 @@ export class RegisterComponent implements OnInit {
       }
     });
     setTimeout(() => this.active = true, 0);
+  }
+
+  getSupervisors() {
+    this._userService.getSupervisors().subscribe(res => {
+      if (!res.err) {
+        this.supervisors = res.data;
+      }
+    })
+  }
+
+  getMatches(searchText: string) {
+    let matches : string[] = [];
+    searchText = `(${searchText})`;
+    this.supervisors.forEach(supervisor => {
+      if (matches.length <= 5 && supervisor.match(new RegExp(searchText)))
+        matches.push(supervisor)
+    });
+    return matches;
   }
 }

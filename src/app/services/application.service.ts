@@ -8,7 +8,6 @@ import {HTTPConnection} from "./http.connection";
 import {JSONResponseModel} from "../models/json-response.model";
 import {StudentApplication} from "../models/student-application.model";
 import {TextResponseModel} from "../models/text-response.model";
-import {CookieService} from "angular2-cookie/services/cookies.service";
 
 @Injectable()
 export class ApplicationService {
@@ -16,24 +15,30 @@ export class ApplicationService {
   private recommendationSource = new Subject<RecommendationModel>();
   recommendation$ = this.recommendationSource.asObservable();
 
-  constructor(private _http: Http, private _cookieService: CookieService) {
-  }
+  constructor(private _http: Http) {}
 
-  getApplications(): Observable<JSONResponseModel> {
-    let role = HTTPConnection.getRole(this._cookieService);
-    let username = HTTPConnection.getUser(this._cookieService);
+  getApplications(role: string, username: string): Observable<JSONResponseModel> {
     return this._http.get(`${role}/applications/${username}`)
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
 
-  createApplication(application: StudentApplication) : Observable<JSONResponseModel> {
-    return this._http.post('/applications', {registration: application.registrationCost, transportation: application.transportationCost, accommodation: application.accommodationCost, meals: application.mealCost, conferenceDetail: application.conferenceDescription, presentationType: application.presentationOption, presentationTitle: application.presentationTitle, supervisor: 'rushil'})
+  createApplication(application: StudentApplication): Observable<JSONResponseModel> {
+    return this._http.post('/applications', {
+      registration: application.registrationCost,
+      transportation: application.transportationCost,
+      accommodation: application.accommodationCost,
+      meals: application.mealCost,
+      conferenceDetail: application.conferenceDescription,
+      presentationType: application.presentationOption,
+      presentationTitle: application.presentationTitle,
+      supervisor: 'rushil'
+    })
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
   }
 
-  makeRecommendation(recommendation: string, applicationID: number) : Observable<TextResponseModel> {
+  makeRecommendation(recommendation: string, applicationID: number): Observable<TextResponseModel> {
     return this._http.put('/application', {recommendation: recommendation, applicationId: applicationID})
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError)
@@ -45,5 +50,6 @@ export class ApplicationService {
 }
 
 export class RecommendationModel {
-  constructor(public applicationID: number, public wasAccepted: boolean) {}
+  constructor(public applicationID: number, public wasAccepted: boolean) {
+  }
 }
