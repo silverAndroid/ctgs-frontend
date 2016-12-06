@@ -19,9 +19,7 @@ export class HomeComponent implements OnInit {
   role: string = HTTPConnection.getRole(this._cookieService);
 
   constructor(private _applicationService: ApplicationService, private _cookieService: CookieService, private _snackbar: AlertsService, private _router: Router) {
-    if (this.role == 'admin')
-      this._router.navigate(['/register']);
-    else {
+    if (this.role != 'admin') {
       _applicationService.recommendation$.subscribe((recommendation) => {
         let newApplication: StudentApplication = null;
         this.applications.map((application) => {
@@ -41,31 +39,34 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     let role = HTTPConnection.getRole(this._cookieService);
     let username = HTTPConnection.getUser(this._cookieService);
-    this._applicationService.getApplications(role, username).subscribe((res) => {
-      if (!res.err) {
-        let applications: StudentApplication[] = [];
-        res.data.forEach((object) => {
-          let application: StudentApplication = new StudentApplication(
-            object.id,
-            object.registration,
-            object.transportation,
-            object.accommodation,
-            object.meals,
-            object.owner,
-            object.recommendation,
-            object.conference_detail,
-            object.presentation_title,
-            object.presentation_type,
-            this.role
-          );
-          applications.push(application);
-          if (application.recommendation == Constants.CONST_PENDING)
-            this.pendingApplications.push(application);
-        });
-        this.applications = applications;
-      } else {
-        this._snackbar.showMsg('Failed to retrieve applications', false);
-      }
-    });
+    if (role == 'admin') this._router.navigate(['/register']);
+    else {
+      this._applicationService.getApplications(role, username).subscribe((res) => {
+        if (!res.err) {
+          let applications: StudentApplication[] = [];
+          res.data.forEach((object) => {
+            let application: StudentApplication = new StudentApplication(
+              object.id,
+              object.registration,
+              object.transportation,
+              object.accommodation,
+              object.meals,
+              object.owner,
+              object.recommendation,
+              object.conference_detail,
+              object.presentation_title,
+              object.presentation_type,
+              this.role
+            );
+            applications.push(application);
+            if (application.recommendation == Constants.CONST_PENDING)
+              this.pendingApplications.push(application);
+          });
+          this.applications = applications;
+        } else {
+          this._snackbar.showMsg('Failed to retrieve applications', false);
+        }
+      });
+    }
   }
 }
