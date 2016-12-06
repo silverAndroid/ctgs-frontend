@@ -9,7 +9,8 @@ import {TextResponseModel} from "../models/text-response.model";
 export class HTTPConnection {
 
   private static roleKey = 'role';
-  
+  private static userKey = 'username';
+
   public static getRole(cookieService: CookieService): string {
     return this.getCookie(this.roleKey, cookieService);
   }
@@ -20,6 +21,18 @@ export class HTTPConnection {
 
   public static deleteRole(cookieService: CookieService) {
     this.deleteCookie(this.roleKey, cookieService);
+  }
+
+  public static getUser(cookieService: CookieService): string {
+    return this.getCookie(this.userKey, cookieService);
+  }
+
+  public static saveUser(username: string, cookieService: CookieService) {
+    this.saveCookie(this.userKey, username, cookieService);
+  }
+
+  public static deleteUser(cookieService: CookieService) {
+    this.deleteCookie(this.userKey, cookieService);
   }
 
   private static getCookie(key: string, cookieService: CookieService): string {

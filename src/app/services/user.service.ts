@@ -31,6 +31,7 @@ export class UserService {
       .map((res) => {
         if (!res.err) {
           HTTPConnection.saveRole(user.role, this._cookieService);
+          HTTPConnection.saveUser(user.username, this._cookieService);
           this.emitLoggedIn(true);
         }
         this.loggedIn = true;
@@ -53,6 +54,7 @@ export class UserService {
 
   logout() {
     HTTPConnection.deleteRole(this._cookieService);
+    HTTPConnection.deleteUser(this._cookieService);
     this.loggedIn = false;
   }
 

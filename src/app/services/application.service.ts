@@ -8,6 +8,7 @@ import {HTTPConnection} from "./http.connection";
 import {JSONResponseModel} from "../models/json-response.model";
 import {StudentApplication} from "../models/student-application.model";
 import {TextResponseModel} from "../models/text-response.model";
+import {CookieService} from "angular2-cookie/services/cookies.service";
 
 @Injectable()
 export class ApplicationService {
@@ -15,11 +16,13 @@ export class ApplicationService {
   private recommendationSource = new Subject<RecommendationModel>();
   recommendation$ = this.recommendationSource.asObservable();
 
-  constructor(private _http: Http) {
+  constructor(private _http: Http, private _cookieService: CookieService) {
   }
 
   getApplications(): Observable<JSONResponseModel> {
-    return this._http.get('/applications')
+    let role = HTTPConnection.getRole(this._cookieService);
+    let username = HTTPConnection.getUser(this._cookieService);
+    return this._http.get(`${role}/applications/${username}`)
       .map(HTTPConnection.extractData)
       .catch(HTTPConnection.handleError);
   }
