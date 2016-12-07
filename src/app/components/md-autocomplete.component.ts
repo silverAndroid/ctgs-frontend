@@ -53,7 +53,7 @@ export class MdAutocomplete implements OnInit {
 
   onEnter() {
     this.setMatches();
-    this.popupVisible = this.matches.length != 0;
+    this.popupVisible = true;
   }
 
   onLeave() {
@@ -64,7 +64,6 @@ export class MdAutocomplete implements OnInit {
   onKeyUp(event) {
     this.searchText = event.target.value;
     this.searchTextChange.emit(this.searchText);
-
     this.setMatches();
   }
 
