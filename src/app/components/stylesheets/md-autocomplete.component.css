@@ -1,0 +1,22 @@
+.md-overlay-pane {
+  left: 60px;
+  padding: 0;
+}
+
+md-input {
+  display: block;
+  margin: 8px 32px;
+}
+
+md-list-item >>> .md-list-item {
+  padding: 0;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+img {
+  float: right;
+  margin: 8px;
+}

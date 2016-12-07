@@ -7,6 +7,7 @@ import {GoogleMapsService} from "../services/google-maps.service";
 @Component({
   selector: "md-autocomplete",
   templateUrl: 'templates/md-autocomplete.component.html',
+  styleUrls: ['stylesheets/md-autocomplete.component.css']
 })
 export class MdAutocomplete implements OnInit {
   @Input('placeholder')

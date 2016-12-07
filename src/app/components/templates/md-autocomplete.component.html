@@ -4,17 +4,19 @@
           (keyup)="onKeyUp($event)"
           [(ngModel)]="searchText"
           placeholder="{{placeholder}}"
-          required="{{required}}"
-          style="display: block; margin: 8px 32px;">
+          required="{{required}}">
 </md-input>
 <!--todo - define as content child-->
-<md-card class="md-overlay-pane" style="left: 60px; padding: 0;" *ngIf="popupVisible">
+<md-card class="md-overlay-pane" *ngIf="popupVisible">
   <md-card-content>
     <md-list class="md-autocomplete-suggestions" dense>
       <md-list-item *ngFor="let item of matches" (mousedown)="select(item)">
         <button md-menu-item>{{item[itemText]}}</button>
       </md-list-item>
     </md-list>
-    <img src="../../../assets/powered_by_google_on_white.png" alt="Powered by Google" *ngIf="poweredByGoogle"/>
+    <img
+      src="../../../assets/powered_by_google_on_white.png"
+      alt="Powered by Google"
+      *ngIf="poweredByGoogle"/>
   </md-card-content>
 </md-card>
