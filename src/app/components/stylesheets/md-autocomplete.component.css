@@ -12,6 +12,10 @@ md-input {
   padding: 0;
 }
 
+md-list-item .md-list-item {
+  padding: 0;
+}
+
 button:hover {
   background: rgba(0, 0, 0, 0.1);
 }

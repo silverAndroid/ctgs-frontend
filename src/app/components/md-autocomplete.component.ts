@@ -1,13 +1,14 @@
 /**
  * Copied from https://gist.github.com/vladimir-ivanov/cc988dbac32645b13b03
  */
-import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation} from "@angular/core";
 import {GoogleMapsService} from "../services/google-maps.service";
 
 @Component({
   selector: "md-autocomplete",
   templateUrl: 'templates/md-autocomplete.component.html',
-  styleUrls: ['stylesheets/md-autocomplete.component.css']
+  styleUrls: ['stylesheets/md-autocomplete.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MdAutocomplete implements OnInit {
   @Input('placeholder')
