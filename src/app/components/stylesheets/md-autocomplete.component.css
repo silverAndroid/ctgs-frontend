@@ -8,18 +8,6 @@ md-input {
   margin: 8px 32px;
 }
 
-:host >>> .md-list-item {
-  padding: 0;
-}
-
-:host /deep/ .md-list-item {
-  padding: 0;
-}
-
-md-list-item .md-list-item {
-  padding: 0;
-}
-
 button:hover {
   background: rgba(0, 0, 0, 0.1);
 }

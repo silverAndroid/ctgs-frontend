@@ -1,14 +1,13 @@
 /**
  * Copied from https://gist.github.com/vladimir-ivanov/cc988dbac32645b13b03
  */
-import {Component, Input, OnInit, Output, EventEmitter, ViewEncapsulation} from "@angular/core";
+import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
 import {GoogleMapsService} from "../services/google-maps.service";
 
 @Component({
   selector: "md-autocomplete",
   templateUrl: 'templates/md-autocomplete.component.html',
-  styleUrls: ['stylesheets/md-autocomplete.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['stylesheets/md-autocomplete.component.css']
 })
 export class MdAutocomplete implements OnInit {
   @Input('placeholder')
@@ -39,13 +38,14 @@ export class MdAutocomplete implements OnInit {
   searchTextChange = new EventEmitter();
 
   @Input('poweredByGoogle')
-  poweredByGoogle : boolean = false;
+  poweredByGoogle: boolean = false;
 
   popupVisible = false;
 
   private matches = [];
 
-  constructor(private _googleMapsService: GoogleMapsService){}
+  constructor(private _googleMapsService: GoogleMapsService) {
+  }
 
   ngOnInit() {
     this.setMatches();
@@ -80,5 +80,6 @@ export class MdAutocomplete implements OnInit {
     } else {
       this.matches = this.items;
     }
+    this.popupVisible = this.matches.length != 0;
   }
 }
