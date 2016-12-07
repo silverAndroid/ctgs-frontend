@@ -8,7 +8,7 @@ md-input {
   margin: 8px 32px;
 }
 
-:host /deep/ .md-list-item {
+:host >>> .md-list-item {
   padding: 0;
 }
 
