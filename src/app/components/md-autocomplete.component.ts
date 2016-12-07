@@ -81,5 +81,6 @@ export class MdAutocomplete implements OnInit {
       this.matches = this.items;
     }
     this.popupVisible = this.matches.length != 0;
+    console.log(this.matches.length);
   }
 }
