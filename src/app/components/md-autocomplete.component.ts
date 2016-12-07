@@ -53,11 +53,11 @@ export class MdAutocomplete implements OnInit {
 
   onEnter() {
     this.setMatches();
-    this.popupVisible = true;
+    this.popupVisible = this.matches.length != 0;
   }
 
   onLeave() {
-    this.popupVisible = true;
+    this.popupVisible = false;
   }
 
   //[(value)] is buggy and does not propagate changes on the md-input so we can get the value correctly
@@ -80,7 +80,5 @@ export class MdAutocomplete implements OnInit {
     } else {
       this.matches = this.items;
     }
-    this.popupVisible = this.matches.length != 0;
-    console.log(this.matches.length);
   }
 }
