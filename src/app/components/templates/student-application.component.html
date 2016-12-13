@@ -3,11 +3,22 @@
         Student {{application.owner}}
     </md-card-title>
     <md-card-subtitle>
-        <span>Status:</span><span [ngStyle]="{'color': recommendationColour}">&nbsp;{{application.recommendation}}</span>
+        <span>Status:</span>
+        <span [ngStyle]="{'color': recommendationColour}">&nbsp;{{application.recommendation}}</span>
     </md-card-subtitle>
     <md-card-content>
         <div class="wrapper">
-          <span style="font-weight: 600; display: block;">{{application.conferenceDescription}}</span>
+            <span style="font-weight: 800; display: block;">{{application.conferenceDescription}}</span>
+            <span style="display: block;">From <span style="font-weight: 500;">{{startDate}}</span> to <span
+                    style="font-weight: 500;">{{endDate}}</span></span>
+            <span>Location:&nbsp;</span>
+            <md-progress-circle mode="indeterminate" color="accent" *ngIf="!hasLocation"></md-progress-circle>
+            <span *ngIf="hasLocation">{{location.name}}</span>
+            <a [href]="location.url" target="_blank" *ngIf="hasLocation" style="display: block;">
+                <button md-button>
+                    Show in Google Maps
+                </button>
+            </a>
             <div class="item">
                 <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-currency-usd"></md-icon>
                 <span class="cost">${{application.registrationCost}}</span>
@@ -25,13 +36,20 @@
                 <md-icon class="mdi-24px" fontSet="mdi" fontIcon="mdi-food"></md-icon>
                 <span class="cost">${{application.mealCost}}</span>
             </div>
-          <span style="display: block;" *ngIf="application.presentationOption != '' && application.presentationTitle != ''">{{application.presentationOption}} presentation on {{application.presentationTitle}}</span>
+            <span style="display: block;"
+                  *ngIf="application.presentationOption != '' && application.presentationTitle != ''">{{application.presentationOption}} presentation on {{application.presentationTitle}}</span>
         </div>
     </md-card-content>
     <md-card-actions>
-        <button md-button id="action-accept" *ngIf="application.role == 'supervisor' && application.recommendation == 'Pending'" (click)="acceptApplication()">
+        <button md-button id="action-accept"
+                *ngIf="!suggestChanges && (application.role == 'supervisor' && application.recommendation == 'Pending')"
+                (click)="acceptApplication()">
             ACCEPT
         </button>
-        <button md-button id="action-reject" *ngIf="application.role == 'supervisor' && application.recommendation == 'Pending'" (click)="rejectApplication()">REJECT</button>
+        <button md-button id="action-reject"
+                *ngIf="!suggestChanges && (application.role == 'supervisor' && application.recommendation == 'Pending')"
+                (click)="rejectApplication()">
+            REJECT
+        </button>
     </md-card-actions>
 </md-card>

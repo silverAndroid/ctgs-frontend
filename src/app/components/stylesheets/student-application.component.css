@@ -21,6 +21,12 @@ button#action-reject {
   color: #F44336;
 }
 
+md-progress-circle {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+
 @media (min-width: 768px) {
   md-card {
     margin: 20px;
