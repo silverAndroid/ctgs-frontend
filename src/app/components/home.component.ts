@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
         if (!res.err) {
           let applications: StudentApplication[] = [];
           res.data.forEach((object) => {
-            // TODO: Fix constructor for Student Application
             let application: StudentApplication = new StudentApplication(
               object.id,
               object.registration,
@@ -58,8 +57,9 @@ export class HomeComponent implements OnInit {
               object.conference_detail,
               object.presentation_title,
               object.presentation_type,
-              new Date(),
-              '',
+              new Date(object.start_date),
+              new Date(object.end_date),
+              object.location,
               this.role
             );
             applications.push(application);
