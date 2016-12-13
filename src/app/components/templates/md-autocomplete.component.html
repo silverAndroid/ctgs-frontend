@@ -3,10 +3,12 @@
           (blur)="onLeave()"
           (keyup)="onKeyUp($event)"
           [(ngModel)]="searchText"
-          placeholder="{{placeholder}}"
-          required="{{required}}">
+          [placeholder]="placeholder"
+          [required]="required"
+          [pattern]="pattern"
+          [title]="title"
+          minlength="1">
 </md-input>
-<!--todo - define as content child-->
 <md-card class="md-overlay-pane" *ngIf="popupVisible">
   <md-card-content>
     <md-list class="md-autocomplete-suggestions" dense>

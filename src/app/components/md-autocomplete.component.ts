@@ -3,6 +3,7 @@
  */
 import {Component, Input, OnInit, Output, EventEmitter} from "@angular/core";
 import {GoogleMapsService} from "../services/google-maps.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: "md-autocomplete",
@@ -28,6 +29,9 @@ export class MdAutocomplete implements OnInit {
   @Input('selectedItem')
   selectedItem;
 
+  @Input('emitText')
+  emitText: string = this.itemText;
+
   @Output()
   selectedItemChange = new EventEmitter();
 
@@ -40,7 +44,14 @@ export class MdAutocomplete implements OnInit {
   @Input('poweredByGoogle')
   poweredByGoogle: boolean = false;
 
+  @Input('pattern')
+  pattern;
+
+  @Input('title')
+  title: string;
+
   popupVisible = false;
+  subscription: Subscription;
 
   private matches = [];
 
@@ -68,7 +79,7 @@ export class MdAutocomplete implements OnInit {
   }
 
   select(item) {
-    this.selectedItemChange.emit(item[this.itemText]);
+    this.selectedItemChange.emit(item[this.emitText]);
     this.searchText = item[this.itemText];
     this.popupVisible = false;
   }

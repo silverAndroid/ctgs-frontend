@@ -4,22 +4,33 @@
   <md-card-subtitle *ngIf="page == 1">Conference Details</md-card-subtitle>
   <md-card-content>
     <form *ngIf="active && page == 0" class="new-application-form" #newApplicationForm="ngForm">
-      <md-input placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
+      <md-input type="number" placeholder="Registration Cost" [(ngModel)]="application.registrationCost" name="registration">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Transportation Cost" [(ngModel)]="application.transportationCost" name="transportation">
+      <md-input type="number" placeholder="Transportation Cost" [(ngModel)]="application.transportationCost" name="transportation">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Accommodation Cost" [(ngModel)]="application.accommodationCost" name="accommodation">
+      <md-input type="number" placeholder="Accommodation Cost" [(ngModel)]="application.accommodationCost" name="accommodation">
         <span md-prefix>$&nbsp;</span>
       </md-input>
-      <md-input placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
+      <md-input type="number" placeholder="Meal Cost" [(ngModel)]="application.mealCost" name="meals">
         <span md-prefix>$&nbsp;</span>
       </md-input>
     </form>
     <form *ngIf="active && page == 1" class="new-application-form" #newApplicationForm="ngForm">
       <md-input placeholder="Conference Description" [(ngModel)]="application.conferenceDescription"
                 name="conferenceDescript"></md-input>
+      <md-autocomplete
+        placeholder="Conference Location"
+        [items]="locations"
+        [itemText]="'name'"
+        [getMatches]="searchGoogleMaps"
+        [(selectedItem)]="application.conferenceLocation"
+        [poweredByGoogle]="true"
+        [emitText]="'placeID'">
+      </md-autocomplete>
+      <md-input placeholder="Conference Start Date" type="datetime-local" [(ngModel)]="application.conferenceStartDateTime" name="startDate"></md-input>
+      <md-input placeholder="Conference End Date" type="datetime-local" [(ngModel)]="application.conferenceEndDateTime" name="endDate"></md-input>
       <md-input placeholder="Presentation Title" [(ngModel)]="application.presentationTitle"
                 name="presentationTitle"></md-input>
       <span>Presentation Options:</span>
@@ -28,19 +39,11 @@
           {{option}}
         </md-radio-button>
       </md-radio-group>
-      <md-autocomplete
-        placeholder="Conference Location"
-        [items]="locations"
-        [itemText]="'name'"
-        [getMatches]="searchGoogleMaps"
-        [(selectedItem)]="application.conferenceLocation"
-        [poweredByGoogle]="true">
-      </md-autocomplete>
     </form>
   </md-card-content>
   <md-card-actions>
-    <button md-button (click)="page = 0" *ngIf="page == 1">Back</button>
-    <button md-button (click)="page = 1" *ngIf="page == 0">Next</button>
+    <button md-button (click)="page = page - 1" *ngIf="page == 1">Back</button>
+    <button md-button (click)="page = page + 1" *ngIf="page == 0">Next</button>
     <button md-button type="submit" (click)="createApplication()" *ngIf="page == 1">Submit</button>
     <button md-button routerLink="/" type="button">Cancel</button>
   </md-card-actions>
