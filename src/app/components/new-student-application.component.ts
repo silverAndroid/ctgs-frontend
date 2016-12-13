@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 import {AlertsService} from "../services/alerts.service";
 import {GoogleMapsService} from "../services/google-maps.service";
 import {LocationModel} from "../models/location.model";
+import {Subscription} from "rxjs";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'new-student-application',
@@ -13,15 +15,88 @@ import {LocationModel} from "../models/location.model";
 })
 export class NewStudentApplicationComponent implements OnInit {
 
-  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', new Date(), '', '');
+  application = new StudentApplication(0, 0, 0, 0, 0, '', '', '', '', '', new Date(), new Date(), '', '');
   active = true;
   presentationOptions = ['Poster', 'Verbal'];
-  locations : LocationModel[] = [];
+  locations: LocationModel[] = [];
   page = 0;
+  subscription: Subscription;
 
-  constructor(private _applicationService: ApplicationService, private _router: Router, private _googleMapsService: GoogleMapsService, private _snackbar: AlertsService) {}
+  form: NgForm;
+  @ViewChild('newApplicationForm')
+  currentForm: NgForm;
+  formErrors = {
+    registration: '',
+    transportation: '',
+    accommodation: '',
+    meals: '',
+    conferenceDescript: '',
+    startDate: '',
+    endDate: '',
+    presentationTitle: ''
+  };
+  validationMessages = {
+    registration: {
+      moneyValidator: 'Invalid currency'
+    },
+    transportation: {
+      moneyValidator: 'Invalid currency'
+    },
+    accommodation: {
+      moneyValidator: 'Invalid currency'
+    },
+    meals: {
+      moneyValidator: 'Invalid currency'
+    },
+    conferenceDescript: {
+      required: 'Field cannot be empty'
+    },
+    startDate: {
+      dateTimeValidator: 'Date must follow the format dd/mm/yyyy and time must follow the format HH:MM'
+    },
+    endDate: {
+      dateTimeValidator: 'Date must follow the format dd/mm/yyyy and time must follow the format HH:MM'
+    },
+    presentationTitle: {
+      alphaFirstValidator: 'The first character must be a letter'
+    }
+  };
+
+  constructor(private _applicationService: ApplicationService, private _router: Router, private _googleMapsService: GoogleMapsService, private _snackbar: AlertsService) {
+  }
 
   ngOnInit() {
+  }
+
+  ngAfterViewChecked() {
+
+  }
+
+  formChanged() {
+    if (this.form == this.currentForm)
+      return;
+    this.form = this.currentForm;
+    if (this.form)
+      this.form.valueChanges.subscribe(data => {
+        this.onValueChanged(data);
+      });
+  }
+
+  onValueChanged(data: any) {
+    if (!this.form)
+      return;
+    const form = this.form;
+    for (const field in this.formErrors) {
+      this.formErrors[field] = '';
+      /*const control = form.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        const messages = this.validationMessages[field];
+        for (const key in control.errors) {
+          this.formErrors[field] += messages[key] + ' ';
+        }
+      }*/
+    }
   }
 
   createApplication() {
@@ -39,9 +114,11 @@ export class NewStudentApplicationComponent implements OnInit {
 
   searchGoogleMaps(items: any[], itemText: string, searchText: string) {
     let locations: LocationModel[] = [];
-    this._googleMapsService.search(searchText).subscribe(res => {
+    if (this.subscription)
+      this.subscription.unsubscribe();
+    this.subscription = this._googleMapsService.search(searchText).subscribe(res => {
       res.data.forEach(object => {
-        locations.push(new LocationModel(object.place_id, object.description))
+        locations.push(new LocationModel(object.description, object.place_id))
       });
     });
     return locations;
