@@ -45,7 +45,7 @@ export class UserService {
   }
 
   register(user: User): Observable<TextResponseModel> {
-    return this._http.post('http://localhost:8080/users', {
+    return this._http.post('/users', {
       name: user.name,
       username: user.username,
       password: user.password,
@@ -59,8 +59,8 @@ export class UserService {
       });
   }
 
-  getSupervisors() : Observable<JSONResponseModel> {
-    return this._http.get('http://localhost:8080/supervisors')
+  getSupervisors(): Observable<JSONResponseModel> {
+    return this._http.get('/supervisors')
       .map(HTTPConnection.extractData)
       .catch(err => {
         return HTTPConnection.handleError(err, this._snackbar)
