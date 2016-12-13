@@ -20,7 +20,9 @@ import { RegisterComponent } from './components/register.component';
 import { StudentApplicationComponent } from './components/student-application.component';
 import { NewStudentApplicationComponent } from './components/new-student-application.component';
 import { MdAutocomplete } from "./components/md-autocomplete.component";
-import {GoogleMapsService} from "./services/google-maps.service";
+import { GoogleMapsService } from "./services/google-maps.service";
+import { MoneyValidatorDirective } from './directives/money-validator.directive';
+import { DateTimeValidatorDirective } from './directives/date-time-validator.directive';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import {GoogleMapsService} from "./services/google-maps.service";
     MdAutocomplete,
     NewStudentApplicationComponent,
     RegisterComponent,
-    StudentApplicationComponent
+    StudentApplicationComponent,
+    MoneyValidatorDirective,
+    DateTimeValidatorDirective
   ],
   imports: [
     BrowserModule,
