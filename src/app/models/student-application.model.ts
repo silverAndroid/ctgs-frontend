@@ -3,7 +3,7 @@ import {Constants} from "../constants";
  * Created by silver_android on 30/11/16.
  */
 export class StudentApplication {
-  constructor(private _id: number, private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number,  private _owner: string, private _recommendation: string, private _conferenceDescription: string, private _presentationTitle: string, private _presentationOption: string, private _conferenceDateTime: Date, private _conferenceLocation: string, private _role: string) {
+  constructor(private _id: number, private _registrationCost: number, private _transportationCost: number, private _accommodationCost: number, private _mealCost: number,  private _owner: string, private _recommendation: string, private _conferenceDescription: string, private _presentationTitle: string, private _presentationOption: string, private _conferenceStartDateTime: Date, private _conferenceEndDateTime: Date, private _conferenceLocation: string, private _role: string) {
     this.registrationCost = _registrationCost;
     this.transportationCost = _transportationCost;
     this.accommodationCost = _accommodationCost;
@@ -87,12 +87,20 @@ export class StudentApplication {
     this._presentationOption = value;
   }
 
-  get conferenceDateTime(): Date {
-    return this._conferenceDateTime;
+  get conferenceStartDateTime(): Date {
+    return this._conferenceStartDateTime;
   }
 
-  set conferenceDateTime(value: Date) {
-    this._conferenceDateTime = value;
+  set conferenceStartDateTime(value: Date) {
+    this._conferenceStartDateTime = value;
+  }
+
+  get conferenceEndDateTime(): Date {
+    return this._conferenceEndDateTime;
+  }
+
+  set conferenceEndDateTime(value: Date) {
+    this._conferenceEndDateTime = value;
   }
 
   get conferenceLocation(): string {
