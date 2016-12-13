@@ -23,7 +23,7 @@ export class GoogleMapsService {
   }
 
   getMapsURL(placeID: string): Observable<JSONResponseModel> {
-    return this._http.get(`/maps/url?placeid=${placeID}`)
+    return this._http.get(`/maps/url?placeID=${placeID}`)
       .map(HTTPConnection.extractData)
       .catch(err => {
         return HTTPConnection.handleError(err, this._snackbar);
